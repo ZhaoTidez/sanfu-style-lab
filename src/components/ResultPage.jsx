@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { ArrowLeft, Download, RefreshCw, Sparkles, UploadCloud } from "lucide-react";
 import { categories, posterLines } from "../data/demoData.js";
 import AvatarLayerStack from "./AvatarLayerStack.jsx";
+import animeOutfitCover from "../assets/anime-outfit-cover.png";
 
 function UploadStep({ uploadedImage, setUploadedImage, onStart }) {
   const inputRef = useRef(null);
@@ -117,11 +118,23 @@ function PosterResult({ state, onBack, onAgain }) {
               <img
                 src={uploadedImage}
                 alt="用户上传照片"
-                className="absolute inset-0 h-full w-full object-cover opacity-30 grayscale-[18%]"
+                className="absolute inset-0 h-full w-full object-cover opacity-20 grayscale-[20%]"
               />
             )}
             <div className="absolute inset-0 grid-paper opacity-30" />
-            <AvatarLayerStack selectedItems={selectedItems} />
+            <img
+              src={animeOutfitCover}
+              alt="原创动漫美女穿搭打卡照"
+              className="relative z-10 h-full w-full object-cover"
+            />
+            <div className="pointer-events-none absolute inset-x-5 bottom-5 z-20 flex items-center justify-between gap-3">
+              <span className="rounded-full border-2 border-black bg-white/88 px-3 py-2 text-[11px] font-black shadow-[4px_4px_0_rgba(0,0,0,.2)] backdrop-blur">
+                原创动漫穿搭
+              </span>
+              <span className="rounded-full border-2 border-black bg-[#a8ff2d] px-3 py-2 text-[11px] font-black shadow-[4px_4px_0_rgba(0,0,0,.2)]">
+                今日打卡照
+              </span>
+            </div>
           </div>
           <div className="mt-5">
             <h1 className="text-4xl font-black leading-tight">{title}</h1>
