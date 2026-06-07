@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: #151515;
+  background: #f7fbff;
+  font-synthesis: none;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.glass-panel {
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.58)),
+    rgba(255, 255, 255, 0.72);
+  box-shadow: 0 20px 70px rgba(48, 66, 121, 0.14);
+  backdrop-filter: blur(18px);
+}
+
+.grid-paper {
+  background-image:
+    linear-gradient(rgba(24, 24, 24, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(24, 24, 24, 0.055) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.neon-text {
+  text-shadow:
+    0 0 20px rgba(255, 45, 155, 0.28),
+    0 0 28px rgba(33, 217, 255, 0.25);
+}
+
+.scanline::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 42%,
+    rgba(33, 217, 255, 0.3) 48%,
+    rgba(255, 45, 155, 0.18) 51%,
+    transparent 60%
+  );
+  animation: scan 2.9s linear infinite;
+}
+
+.thin-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 45, 155, 0.45) rgba(255, 255, 255, 0.4);
+}
+
+.thin-scrollbar::-webkit-scrollbar {
+  width: 7px;
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: linear-gradient(#ff2d9b, #21d9ff);
+}
+
+.thin-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.poster-grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.2;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.9) 0 1px, transparent 1px),
+    radial-gradient(circle at 80% 40%, rgba(0, 0, 0, 0.22) 0 1px, transparent 1px);
+  background-size: 17px 19px, 23px 29px;
+  mix-blend-mode: soft-light;
+}
+
+.avatar-layer-pop {
+  animation: avatarLayerPop 0.32s ease-out both;
+}
+
+@keyframes avatarLayerPop {
+  0% {
+    opacity: 0;
+    filter: saturate(0.8) brightness(1.15);
+  }
+
+  100% {
+    opacity: 1;
+    filter: saturate(1) brightness(1);
+  }
+}

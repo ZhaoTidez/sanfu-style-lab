@@ -1,0 +1,42 @@
+import { scenes } from "../data/demoData.js";
+
+export default function SceneSelector({ selectedScene, onSelectScene }) {
+  return (
+    <section>
+      <div className="mb-3 flex items-end justify-between">
+        <div>
+          <p className="text-xs font-black text-black/45">STEP 01</p>
+          <h3 className="font-black">生活场景</h3>
+        </div>
+        <span className="rounded-full bg-[#a8ff2d] px-3 py-1 text-[11px] font-black">
+          先定今天
+        </span>
+      </div>
+      <div className="grid grid-cols-1 gap-2">
+        {scenes.map((scene) => {
+          const active = scene.id === selectedScene.id;
+          return (
+            <button
+              key={scene.id}
+              onClick={() => onSelectScene(scene)}
+              className={`group rounded-2xl border p-3 text-left transition duration-300 hover:-translate-y-0.5 ${
+                active
+                  ? "border-black bg-white shadow-[5px_5px_0_#151515]"
+                  : "border-black/8 bg-white/52 hover:border-black/20"
+              }`}
+            >
+              <div className="flex items-center gap-2">
+                <span
+                  className="h-3 w-3 rounded-full border border-black/40"
+                  style={{ backgroundColor: scene.color }}
+                />
+                <span className="text-sm font-black">{scene.name}</span>
+              </div>
+              <p className="mt-1 text-xs font-semibold leading-5 text-black/52">{scene.description}</p>
+            </button>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
