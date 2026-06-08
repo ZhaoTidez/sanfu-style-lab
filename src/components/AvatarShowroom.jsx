@@ -145,8 +145,8 @@ export default function AvatarShowroom({ state, onSelectGender, onGenerate }) {
   `;
 
   return (
-    <section className="relative flex h-full min-h-0 min-w-0 flex-col overflow-hidden rounded-[22px] border border-black/5 bg-white p-2.5 shadow-[0_14px_36px_rgba(25,35,70,.08)] sm:min-h-[760px] sm:rounded-[34px] sm:p-4 lg:glass-panel lg:max-h-[calc(100vh-104px)]">
-      <div className="mb-2 flex shrink-0 items-center justify-between gap-2 rounded-[16px] bg-[#f7f9fc] px-3 py-2 sm:mb-3 sm:flex-wrap sm:gap-3 sm:rounded-[24px] sm:bg-white/64 sm:px-4 sm:py-3">
+    <section className="relative flex h-full min-h-0 min-w-0 flex-col overflow-hidden rounded-[22px] border border-black/5 bg-white p-2 shadow-[0_14px_36px_rgba(25,35,70,.08)] sm:min-h-[760px] sm:rounded-[34px] sm:p-4 lg:glass-panel lg:max-h-[calc(100vh-104px)]">
+      <div className="mb-1.5 flex shrink-0 items-center justify-between gap-2 rounded-[16px] bg-[#f7f9fc] px-3 py-1.5 sm:mb-3 sm:flex-wrap sm:gap-3 sm:rounded-[24px] sm:bg-white/64 sm:px-4 sm:py-3">
         <div>
           <p className="text-[10px] font-black uppercase text-black/35 sm:text-xs">Dress-Up Stage</p>
           <h2 className="text-lg font-black sm:text-xl">纸娃娃试衣间</h2>

@@ -46,6 +46,35 @@ export default function LabPage({
           </div>
         </header>
 
+        <div className="mb-2 grid shrink-0 grid-cols-2 gap-2 rounded-[22px] border border-black/5 bg-white/92 p-2 shadow-[0_12px_28px_rgba(25,35,70,.1)] backdrop-blur-xl lg:hidden">
+          <button
+            type="button"
+            onClick={openFilterPanel}
+            className="group flex min-w-0 items-center gap-2 rounded-[18px] border border-[#ff2d9b]/20 bg-white px-3 py-2 text-left shadow-[0_8px_18px_rgba(255,45,155,.12)] transition active:scale-[.98]"
+          >
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#ff2d9b]/12 text-[#ff2d9b]">
+              <SlidersHorizontal className="h-5 w-5" />
+            </span>
+            <span className="min-w-0">
+              <span className="block truncate text-sm font-black">搭配灵感</span>
+              <span className="block truncate text-[10px] font-bold text-black/45">场景 / 风格 / 单品</span>
+            </span>
+          </button>
+          <button
+            type="button"
+            onClick={openCompanionPanel}
+            className="group flex min-w-0 items-center gap-2 rounded-[18px] border border-black bg-black px-3 py-2 text-left text-white shadow-[0_8px_18px_rgba(0,0,0,.2)] transition active:scale-[.98]"
+          >
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#a8ff2d] text-black">
+              <Bot className="h-5 w-5" />
+            </span>
+            <span className="min-w-0">
+              <span className="block truncate text-sm font-black">AI 好搭子</span>
+              <span className="block truncate text-[10px] font-bold text-white/58">一键搭完整套</span>
+            </span>
+          </button>
+        </div>
+
         <div className="grid min-h-0 min-w-0 flex-1 grid-rows-[minmax(0,1fr)] gap-3 overflow-hidden lg:grid-cols-[minmax(280px,25%)_minmax(440px,1fr)_minmax(300px,25%)] lg:grid-rows-none lg:overflow-visible">
           <div className="hidden min-w-0 lg:order-1 lg:block">
             <FilterPanel
@@ -64,26 +93,6 @@ export default function LabPage({
           </div>
         </div>
 
-        <div className="fixed left-2 top-1/2 z-40 -translate-y-1/2 lg:hidden">
-          <button
-            type="button"
-            onClick={openFilterPanel}
-            className="flex flex-col items-center gap-1 rounded-full border border-black/10 bg-white/92 px-2.5 py-3 text-xs font-black shadow-[0_12px_28px_rgba(25,35,70,.18)] backdrop-blur"
-          >
-            <SlidersHorizontal className="h-4 w-4 text-[#ff2d9b]" />
-            搭配
-          </button>
-        </div>
-        <div className="fixed right-2 top-1/2 z-40 -translate-y-1/2 lg:hidden">
-          <button
-            type="button"
-            onClick={openCompanionPanel}
-            className="flex flex-col items-center gap-1 rounded-full border border-black/10 bg-black/92 px-2.5 py-3 text-xs font-black text-white shadow-[0_12px_28px_rgba(25,35,70,.18)] backdrop-blur"
-          >
-            <Bot className="h-4 w-4 text-[#a8ff2d]" />
-            好搭子
-          </button>
-        </div>
       </div>
 
       {mobilePanel && (
