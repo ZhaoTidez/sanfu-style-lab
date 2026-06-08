@@ -23,18 +23,18 @@ export default function FilterPanel({
     });
 
   return (
-    <aside className="glass-panel flex min-h-[720px] flex-col overflow-hidden rounded-[30px] p-4 lg:max-h-[calc(100vh-104px)]">
-      <div className="mb-4 flex items-center justify-between gap-3">
+    <aside className="flex min-h-0 min-w-0 flex-col overflow-hidden rounded-[24px] border border-black/5 bg-white p-3 shadow-[0_14px_36px_rgba(25,35,70,.08)] sm:p-4 lg:glass-panel lg:min-h-[720px] lg:max-h-[calc(100vh-104px)] lg:rounded-[30px]">
+      <div className="mb-3 flex items-center justify-between gap-3 sm:mb-4">
         <div>
-          <p className="text-xs font-black uppercase text-[#ff2d9b]">Filter Cabin</p>
-          <h2 className="text-xl font-black">灵感筛选舱</h2>
+          <p className="text-[10px] font-black uppercase text-[#ff2d9b] sm:text-xs">Filter Cabin</p>
+          <h2 className="text-lg font-black sm:text-xl">灵感筛选舱</h2>
         </div>
-        <div className="rounded-2xl bg-black p-3 text-white">
-          <SlidersHorizontal className="h-5 w-5" />
+        <div className="rounded-2xl bg-black p-2.5 text-white sm:p-3">
+          <SlidersHorizontal className="h-4 w-4 sm:h-5 sm:w-5" />
         </div>
       </div>
 
-      <div className="thin-scrollbar flex-1 space-y-5 overflow-y-auto pr-1">
+      <div className="thin-scrollbar min-w-0 flex-1 space-y-4 overflow-visible pr-0 lg:space-y-5 lg:overflow-y-auto lg:pr-1">
         <SceneSelector selectedScene={selectedScene} onSelectScene={onSelectScene} />
         <StyleSelector selectedStyle={selectedStyle} onSelectStyle={onSelectStyle} />
         <CategoryTabs selectedCategory={selectedCategory} onSelectCategory={onSelectCategory} />

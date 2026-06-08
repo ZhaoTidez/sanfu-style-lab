@@ -3,16 +3,16 @@ import { categories, styles } from "../data/demoData.js";
 
 function MiniProductVisual({ product }) {
   return (
-    <div className="relative h-28 overflow-hidden rounded-2xl border border-black/10 bg-gradient-to-br from-white via-[#f7fbff] to-[#ecf8ff]">
+    <div className="relative h-20 overflow-hidden rounded-[18px] border border-black/8 bg-gradient-to-br from-white via-[#f7fbff] to-[#ecf8ff] sm:h-28 sm:rounded-2xl sm:border-black/10">
       <div
-        className="absolute left-1/2 top-1/2 h-20 w-20 -translate-x-1/2 -translate-y-1/2 rotate-[-8deg] rounded-[24px] border-2 border-black shadow-[5px_5px_0_rgba(0,0,0,.14)]"
+        className="absolute left-1/2 top-1/2 h-14 w-14 -translate-x-1/2 -translate-y-1/2 rotate-[-8deg] rounded-[18px] border-2 border-black shadow-[4px_4px_0_rgba(0,0,0,.12)] sm:h-20 sm:w-20 sm:rounded-[24px] sm:shadow-[5px_5px_0_rgba(0,0,0,.14)]"
         style={{ backgroundColor: product.layerColor }}
       />
       <div
-        className="absolute bottom-4 right-7 h-9 w-9 rotate-[14deg] rounded-full border-2 border-black"
+        className="absolute bottom-3 right-5 h-7 w-7 rotate-[14deg] rounded-full border-2 border-black sm:bottom-4 sm:right-7 sm:h-9 sm:w-9"
         style={{ backgroundColor: product.accentColor }}
       />
-      <div className="absolute left-4 top-4 rounded-full border border-black/10 bg-white/75 px-2 py-1 text-[10px] font-black">
+      <div className="absolute left-2 top-2 rounded-full border border-black/10 bg-white/75 px-2 py-1 text-[9px] font-black sm:left-4 sm:top-4 sm:text-[10px]">
         {product.image}
       </div>
     </div>
@@ -29,17 +29,17 @@ export default function ProductCard({ product, isSelected, isRecommended, onSele
   return (
     <button
       onClick={onSelect}
-      className={`group rounded-[24px] border p-2 text-left transition duration-300 hover:-translate-y-1 ${
+      className={`group rounded-[20px] border p-2 text-left transition duration-300 hover:-translate-y-1 sm:rounded-[24px] ${
         isSelected
           ? "border-black bg-white shadow-[6px_6px_0_#151515]"
           : "border-black/10 bg-white/62 hover:border-[#ff2d9b]/70 hover:shadow-neon"
       }`}
     >
       <MiniProductVisual product={product} />
-      <div className="px-1 pt-3">
+      <div className="px-1 pt-2 sm:pt-3">
         <div className="flex items-start justify-between gap-2">
           <div>
-            <p className="text-sm font-black leading-5">{product.name}</p>
+            <p className="text-[13px] font-black leading-5 sm:text-sm">{product.name}</p>
             <p className="mt-0.5 text-[11px] font-bold text-black/45">{categoryName}</p>
           </div>
           <span
@@ -63,7 +63,7 @@ export default function ProductCard({ product, isSelected, isRecommended, onSele
             </span>
           ))}
         </div>
-        <p className="mt-2 text-xs font-semibold leading-5 text-black/58">{product.comment}</p>
+        <p className="mt-2 hidden text-xs font-semibold leading-5 text-black/58 sm:block">{product.comment}</p>
       </div>
     </button>
   );

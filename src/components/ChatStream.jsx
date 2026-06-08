@@ -28,7 +28,7 @@ export default function ChatStream({ messages }) {
   return (
     <div
       ref={streamRef}
-      className="thin-scrollbar min-h-[260px] flex-1 space-y-3 overflow-y-auto rounded-[24px] border border-black/8 bg-white/45 p-3"
+      className="thin-scrollbar max-h-[260px] min-h-[160px] flex-1 space-y-3 overflow-y-auto rounded-[22px] border border-black/8 bg-white/45 p-3 sm:min-h-[220px] lg:max-h-none lg:min-h-[260px] lg:rounded-[24px]"
     >
       {messages.map((message) => (
         <div

@@ -2,7 +2,7 @@ import { styles } from "../data/demoData.js";
 
 export default function StyleSelector({ selectedStyle, onSelectStyle }) {
   return (
-    <section>
+    <section className="min-w-0">
       <div className="mb-3 flex items-end justify-between">
         <div>
           <p className="text-xs font-black text-black/45">STEP 02</p>
@@ -12,14 +12,14 @@ export default function StyleSelector({ selectedStyle, onSelectStyle }) {
           定气质
         </span>
       </div>
-      <div className="flex flex-wrap gap-2">
+      <div className="-mx-3 flex max-w-[calc(100%+1.5rem)] gap-2 overflow-x-auto px-3 pb-1 lg:mx-0 lg:max-w-full lg:flex-wrap lg:overflow-visible lg:px-0">
         {styles.map((style) => {
           const active = style.id === selectedStyle.id;
           return (
             <button
               key={style.id}
               onClick={() => onSelectStyle(style)}
-              className={`rounded-full border px-3 py-2 text-xs font-black transition hover:-translate-y-0.5 ${
+              className={`shrink-0 rounded-full border px-3 py-2 text-xs font-black transition hover:-translate-y-0.5 ${
                 active
                   ? "border-black bg-black text-white shadow-[4px_4px_0_var(--chip)]"
                   : "border-black/10 bg-white/60 text-black/70 hover:border-black/25"

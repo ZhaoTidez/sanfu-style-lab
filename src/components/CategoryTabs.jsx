@@ -2,7 +2,7 @@ import { categories } from "../data/demoData.js";
 
 export default function CategoryTabs({ selectedCategory, onSelectCategory }) {
   return (
-    <section>
+    <section className="min-w-0">
       <div className="mb-3 flex items-end justify-between">
         <div>
           <p className="text-xs font-black text-black/45">STEP 03</p>
@@ -12,7 +12,7 @@ export default function CategoryTabs({ selectedCategory, onSelectCategory }) {
           叠图层
         </span>
       </div>
-      <div className="flex gap-2 overflow-x-auto pb-1 lg:flex-wrap">
+      <div className="-mx-3 flex max-w-[calc(100%+1.5rem)] gap-2 overflow-x-auto px-3 pb-1 lg:mx-0 lg:max-w-full lg:flex-wrap lg:px-0">
         {categories.map((category) => {
           const active = category.id === selectedCategory.id;
           return (

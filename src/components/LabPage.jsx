@@ -1,4 +1,5 @@
-import { Sparkles } from "lucide-react";
+import { Bot, SlidersHorizontal, Sparkles, X } from "lucide-react";
+import { useState } from "react";
 import FilterPanel from "./FilterPanel.jsx";
 import AvatarShowroom from "./AvatarShowroom.jsx";
 import AICompanionPanel from "./AICompanionPanel.jsx";
@@ -15,14 +16,23 @@ export default function LabPage({
   onQuickAction,
   onGenerate,
 }) {
-  return (
-    <main className="min-h-screen bg-[#f7fbff] text-[#151515]">
-      <div className="fixed inset-0 grid-paper opacity-70" />
-      <div className="fixed left-[-8rem] top-[-8rem] h-72 w-72 rounded-full bg-[#ff2d9b]/20 blur-3xl" />
-      <div className="fixed bottom-[-9rem] right-[-8rem] h-96 w-96 rounded-full bg-[#21d9ff]/25 blur-3xl" />
+  const [mobilePanel, setMobilePanel] = useState(null);
+  const closeMobilePanel = () => setMobilePanel(null);
+  const openFilterPanel = () => setMobilePanel("filter");
+  const openCompanionPanel = () => setMobilePanel("companion");
+  const isFilterOpen = mobilePanel === "filter";
+  const isCompanionOpen = mobilePanel === "companion";
 
-      <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-[1740px] flex-col px-3 py-3 sm:px-5">
-        <header className="mb-3 flex flex-wrap items-center justify-between gap-3 rounded-[28px] border border-white/75 bg-white/70 px-4 py-3 shadow-neon backdrop-blur-xl">
+  const drawerTitle = isFilterOpen ? "灵感筛选" : "AI 好搭子";
+
+  return (
+    <main className="min-h-screen overflow-x-hidden bg-[#f5f7fb] text-[#151515] lg:bg-[#f7fbff]">
+      <div className="fixed inset-0 hidden grid-paper opacity-70 lg:block" />
+      <div className="fixed left-[-8rem] top-[-8rem] hidden h-72 w-72 rounded-full bg-[#ff2d9b]/20 blur-3xl lg:block" />
+      <div className="fixed bottom-[-9rem] right-[-8rem] hidden h-96 w-96 rounded-full bg-[#21d9ff]/25 blur-3xl lg:block" />
+
+      <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-[430px] flex-col px-3 pb-4 pt-2 lg:max-w-[1740px] lg:px-5 lg:py-3">
+        <header className="sticky top-2 z-30 mb-3 flex items-center justify-between gap-3 rounded-[22px] border border-black/5 bg-white/92 px-3 py-2.5 shadow-[0_10px_30px_rgba(25,35,70,.08)] backdrop-blur-xl lg:static lg:rounded-[28px] lg:border-white/75 lg:bg-white/70 lg:px-4 lg:py-3 lg:shadow-neon">
           <div className="flex items-center gap-3">
             <img src={logoUrl} alt="SANFU" className="h-8 w-auto object-contain" />
             <div>
@@ -30,24 +40,98 @@ export default function LabPage({
               <p className="text-xs font-bold text-black/48">SANFU Style Lab</p>
             </div>
           </div>
-          <div className="flex items-center gap-2 rounded-full border border-black/10 bg-white/80 px-3 py-2 text-xs font-black">
+          <div className="hidden items-center gap-2 rounded-full border border-black/10 bg-white/80 px-3 py-2 text-xs font-black sm:flex">
             <Sparkles className="h-4 w-4 text-[#ff2d9b]" />
             不是单品清单，是今天的生活状态
           </div>
         </header>
 
-        <div className="grid flex-1 gap-3 lg:grid-cols-[minmax(280px,25%)_minmax(440px,1fr)_minmax(300px,25%)]">
-          <FilterPanel
-            state={state}
-            onSelectScene={onSelectScene}
-            onSelectStyle={onSelectStyle}
-            onSelectCategory={onSelectCategory}
-            onSelectProduct={onSelectProduct}
-          />
-          <AvatarShowroom state={state} onSelectGender={onSelectGender} onGenerate={onGenerate} />
-          <AICompanionPanel state={state} onQuickAction={onQuickAction} />
+        <div className="grid min-w-0 flex-1 gap-3 lg:grid-cols-[minmax(280px,25%)_minmax(440px,1fr)_minmax(300px,25%)]">
+          <div className="hidden min-w-0 lg:order-1 lg:block">
+            <FilterPanel
+              state={state}
+              onSelectScene={onSelectScene}
+              onSelectStyle={onSelectStyle}
+              onSelectCategory={onSelectCategory}
+              onSelectProduct={onSelectProduct}
+            />
+          </div>
+          <div className="order-1 min-w-0 lg:order-2">
+            <AvatarShowroom state={state} onSelectGender={onSelectGender} onGenerate={onGenerate} />
+          </div>
+          <div className="hidden min-w-0 lg:order-3 lg:block">
+            <AICompanionPanel state={state} onQuickAction={onQuickAction} />
+          </div>
+        </div>
+
+        <div className="fixed left-2 top-1/2 z-40 -translate-y-1/2 lg:hidden">
+          <button
+            type="button"
+            onClick={openFilterPanel}
+            className="flex flex-col items-center gap-1 rounded-full border border-black/10 bg-white/92 px-2.5 py-3 text-xs font-black shadow-[0_12px_28px_rgba(25,35,70,.18)] backdrop-blur"
+          >
+            <SlidersHorizontal className="h-4 w-4 text-[#ff2d9b]" />
+            搭配
+          </button>
+        </div>
+        <div className="fixed right-2 top-1/2 z-40 -translate-y-1/2 lg:hidden">
+          <button
+            type="button"
+            onClick={openCompanionPanel}
+            className="flex flex-col items-center gap-1 rounded-full border border-black/10 bg-black/92 px-2.5 py-3 text-xs font-black text-white shadow-[0_12px_28px_rgba(25,35,70,.18)] backdrop-blur"
+          >
+            <Bot className="h-4 w-4 text-[#a8ff2d]" />
+            好搭子
+          </button>
         </div>
       </div>
+
+      {mobilePanel && (
+        <div className="fixed inset-0 z-50 lg:hidden">
+          <button
+            type="button"
+            aria-label="关闭面板"
+            onClick={closeMobilePanel}
+            className="absolute inset-0 bg-black/32 backdrop-blur-[2px]"
+          />
+          <section
+            className={`absolute top-0 flex h-full w-[88vw] max-w-[390px] flex-col bg-[#f5f7fb] p-3 shadow-[0_0_40px_rgba(0,0,0,.22)] transition ${
+              isFilterOpen ? "left-0 rounded-r-[28px]" : "right-0 rounded-l-[28px]"
+            }`}
+          >
+            <div className="mb-3 flex items-center justify-between rounded-[20px] bg-white px-3 py-2.5 shadow-[0_10px_24px_rgba(25,35,70,.08)]">
+              <div>
+                <p className="text-[10px] font-black uppercase text-black/35">
+                  {isFilterOpen ? "Style Panel" : "Companion Panel"}
+                </p>
+                <h2 className="text-lg font-black">{drawerTitle}</h2>
+              </div>
+              <button
+                type="button"
+                onClick={closeMobilePanel}
+                className="rounded-full bg-black p-2 text-white"
+                aria-label="关闭"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+
+            <div className="thin-scrollbar min-h-0 flex-1 overflow-y-auto pb-20">
+              {isFilterOpen ? (
+                <FilterPanel
+                  state={state}
+                  onSelectScene={onSelectScene}
+                  onSelectStyle={onSelectStyle}
+                  onSelectCategory={onSelectCategory}
+                  onSelectProduct={onSelectProduct}
+                />
+              ) : (
+                <AICompanionPanel state={state} onQuickAction={onQuickAction} />
+              )}
+            </div>
+          </section>
+        </div>
+      )}
     </main>
   );
 }

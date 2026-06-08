@@ -2,6 +2,11 @@ import { Camera, Sparkles, UserRound } from "lucide-react";
 import AvatarLayerStack from "./AvatarLayerStack.jsx";
 import StyleMeter from "./StyleMeter.jsx";
 
+const basePreviewAssets = {
+  female: new URL("../assets/dressup/female-base.png", import.meta.url).href,
+  male: new URL("../assets/dressup/male-base.png", import.meta.url).href,
+};
+
 const sceneTints = {
   commute: "rgba(33,217,255,.34)",
   campus: "rgba(79,124,255,.34)",
@@ -71,25 +76,15 @@ function SceneProps({ type }) {
 }
 
 function GenderPreview({ gender }) {
-  const female = gender === "female";
   return (
-    <div className="relative h-44 w-28">
-      <div className="absolute left-1/2 top-1 h-16 w-16 -translate-x-1/2 rounded-full border-[3px] border-black bg-[#ffd9cf]" />
-      <div
-        className={`absolute left-1/2 top-0 -translate-x-1/2 bg-black ${
-          female ? "h-14 w-24 rounded-t-full" : "h-11 w-20 rounded-[24px_24px_14px_14px]"
-        }`}
+    <div className="relative h-48 w-36">
+      <div className="absolute bottom-2 left-1/2 h-8 w-28 -translate-x-1/2 rounded-[50%] bg-black/14 blur-md" />
+      <img
+        src={basePreviewAssets[gender]}
+        alt=""
+        className="relative z-10 h-full w-full object-contain drop-shadow-[0_16px_18px_rgba(0,0,0,.2)]"
+        draggable="false"
       />
-      {female && (
-        <>
-          <div className="absolute left-0 top-10 h-28 w-10 rounded-full bg-black" />
-          <div className="absolute right-0 top-10 h-28 w-10 rounded-full bg-black" />
-        </>
-      )}
-      <div className="absolute left-1/2 top-[64px] h-24 w-24 -translate-x-1/2 rounded-[28px] border-[3px] border-black bg-white shadow-[inset_0_-18px_0_#e8efff]" />
-      <div className="absolute bottom-0 left-5 h-16 w-5 rounded-full border-[3px] border-black bg-[#ffd9cf]" />
-      <div className="absolute bottom-0 right-5 h-16 w-5 rounded-full border-[3px] border-black bg-[#ffd9cf]" />
-      <div className="absolute left-1/2 top-[150px] h-4 w-24 -translate-x-1/2 rounded-full bg-black/18 blur-md" />
     </div>
   );
 }
@@ -101,36 +96,36 @@ function GenderGate({ onSelectGender }) {
   ];
 
   return (
-    <div className="relative z-10 flex w-full max-w-3xl flex-col items-center gap-6 p-5 text-center">
-      <div className="rounded-full border-2 border-black bg-[#a8ff2d] px-4 py-2 text-xs font-black shadow-[5px_5px_0_#151515]">
+    <div className="relative z-10 flex w-full min-w-0 flex-col items-center gap-3 p-3 text-center sm:max-w-3xl sm:gap-6 sm:p-5">
+      <div className="rounded-full border-2 border-black bg-[#a8ff2d] px-3 py-1.5 text-[11px] font-black shadow-[3px_3px_0_#151515] sm:px-4 sm:py-2 sm:text-xs sm:shadow-[5px_5px_0_#151515]">
         先选择你的换装角色
       </div>
-      <h3 className="text-3xl font-black leading-tight sm:text-5xl">进入纸娃娃试衣间</h3>
-      <p className="max-w-xl text-sm font-bold leading-6 text-black/58">
+      <h3 className="text-2xl font-black leading-tight sm:text-5xl">进入纸娃娃试衣间</h3>
+      <p className="max-w-xs text-xs font-bold leading-5 text-black/56 sm:max-w-xl sm:text-sm sm:leading-6">
         角色会先穿基础内搭，后续单品会像 2D 换装游戏一样叠加到同一套立绘骨架上。
       </p>
-      <div className="grid w-full gap-4 sm:grid-cols-2">
+      <div className="grid w-full min-w-0 grid-cols-2 gap-2 sm:gap-4">
         {options.map((option) => (
           <button
             key={option.id}
             onClick={() => onSelectGender(option.id)}
-            className="group rounded-[30px] border-2 border-black bg-white/74 p-4 text-left shadow-[8px_8px_0_rgba(0,0,0,.88)] backdrop-blur transition hover:-translate-y-1"
+            className="group min-w-0 rounded-[20px] border border-black/10 bg-white/84 p-2 text-left shadow-[0_10px_22px_rgba(25,35,70,.12)] backdrop-blur transition hover:-translate-y-1 sm:rounded-[30px] sm:border-2 sm:border-black sm:p-4 sm:shadow-[8px_8px_0_rgba(0,0,0,.88)]"
           >
             <div
-              className="mb-4 flex h-52 items-center justify-center overflow-hidden rounded-[24px] border border-black/10"
+              className="mb-2 flex h-36 items-center justify-center overflow-hidden rounded-[16px] border border-black/8 sm:mb-4 sm:h-52 sm:rounded-[24px] sm:border-black/10"
               style={{
                 background: `radial-gradient(circle at 50% 28%, ${option.color}55, transparent 40%), linear-gradient(135deg, #fff, #f2fbff)`,
               }}
             >
               <GenderPreview gender={option.id} />
             </div>
-            <div className="flex items-center justify-between gap-3">
-              <div>
-                <p className="font-black">{option.label}</p>
-                <p className="mt-1 text-xs font-bold text-black/48">{option.sub}</p>
+            <div className="flex items-center justify-between gap-2">
+              <div className="min-w-0">
+                <p className="truncate text-sm font-black sm:text-base">{option.label}</p>
+                <p className="mt-1 truncate text-[10px] font-bold text-black/48 sm:text-xs">{option.sub}</p>
               </div>
-              <span className="rounded-full bg-black p-3 text-white transition group-hover:rotate-6">
-                <UserRound className="h-5 w-5" />
+              <span className="shrink-0 rounded-full bg-black p-2 text-white transition group-hover:rotate-6 sm:p-3">
+                <UserRound className="h-4 w-4 sm:h-5 sm:w-5" />
               </span>
             </div>
           </button>
@@ -150,20 +145,20 @@ export default function AvatarShowroom({ state, onSelectGender, onGenerate }) {
   `;
 
   return (
-    <section className="glass-panel relative flex min-h-[760px] flex-col overflow-hidden rounded-[34px] p-4 lg:max-h-[calc(100vh-104px)]">
-      <div className="mb-3 flex flex-wrap items-center justify-between gap-3 rounded-[24px] border border-black/8 bg-white/64 px-4 py-3">
+    <section className="relative flex min-h-[calc(100svh-88px)] min-w-0 flex-col overflow-hidden rounded-[24px] border border-black/5 bg-white p-3 shadow-[0_14px_36px_rgba(25,35,70,.08)] sm:min-h-[760px] sm:rounded-[34px] sm:p-4 lg:glass-panel lg:max-h-[calc(100vh-104px)]">
+      <div className="mb-3 flex flex-wrap items-center justify-between gap-2 rounded-[18px] bg-[#f7f9fc] px-3 py-2.5 sm:gap-3 sm:rounded-[24px] sm:bg-white/64 sm:px-4 sm:py-3">
         <div>
-          <p className="text-xs font-black uppercase text-black/40">Dress-Up Stage</p>
-          <h2 className="text-xl font-black">纸娃娃试衣间</h2>
+          <p className="text-[10px] font-black uppercase text-black/35 sm:text-xs">Dress-Up Stage</p>
+          <h2 className="text-lg font-black sm:text-xl">纸娃娃试衣间</h2>
         </div>
-        <div className="flex flex-wrap gap-2 text-xs font-black">
-          <span className="rounded-full bg-[#21d9ff] px-3 py-2">当前场景：{selectedScene.name}</span>
-          <span className="rounded-full bg-[#ffdf3d] px-3 py-2">当前风格：{selectedStyle.name}</span>
+        <div className="flex flex-wrap gap-1.5 text-[11px] font-black sm:gap-2 sm:text-xs">
+          <span className="rounded-full bg-[#21d9ff] px-2.5 py-1.5 sm:px-3 sm:py-2">场景：{selectedScene.name}</span>
+          <span className="rounded-full bg-[#ffdf3d] px-2.5 py-1.5 sm:px-3 sm:py-2">风格：{selectedStyle.name}</span>
         </div>
       </div>
 
       <div
-        className="scanline relative flex min-h-[520px] flex-1 items-center justify-center overflow-hidden rounded-[30px] border-2 border-black/10"
+        className="scanline relative flex min-h-[455px] flex-1 items-center justify-center overflow-hidden rounded-[22px] border border-black/8 sm:min-h-[520px] sm:rounded-[30px] sm:border-2"
         style={{
           backgroundImage: background,
           backgroundPosition: `center, center, ${selectedScene.backgroundPosition || "center"}`,
@@ -176,12 +171,12 @@ export default function AvatarShowroom({ state, onSelectGender, onGenerate }) {
         <div className="absolute inset-x-8 top-8 h-24 rounded-full bg-white/38 blur-2xl" />
         <div className="absolute bottom-0 left-1/2 h-32 w-[72%] -translate-x-1/2 rounded-[50%] bg-black/10 blur-xl" />
         <SceneProps type={selectedScene.backgroundType} />
-        <div className="absolute left-5 top-5 rounded-full border border-black/10 bg-white/72 px-4 py-2 text-xs font-black backdrop-blur">
+        <div className="absolute left-3 top-3 rounded-full border border-black/10 bg-white/72 px-3 py-1.5 text-[11px] font-black backdrop-blur sm:left-5 sm:top-5 sm:px-4 sm:py-2 sm:text-xs">
           {selectedScene.mood}
         </div>
-        <div className="absolute right-5 top-5 flex items-center gap-2 rounded-full border border-black/10 bg-white/72 px-4 py-2 text-xs font-black backdrop-blur">
-          <Sparkles className="h-4 w-4 text-[#ff2d9b]" />
-          已叠加 {selectedCount} 层灵感
+        <div className="absolute right-3 top-3 flex items-center gap-1.5 rounded-full border border-black/10 bg-white/72 px-3 py-1.5 text-[11px] font-black backdrop-blur sm:right-5 sm:top-5 sm:gap-2 sm:px-4 sm:py-2 sm:text-xs">
+          <Sparkles className="h-3.5 w-3.5 text-[#ff2d9b] sm:h-4 sm:w-4" />
+          {selectedCount} 层
         </div>
         {selectedGender ? (
           <AvatarLayerStack selectedItems={selectedItems} selectedGender={selectedGender} />
@@ -190,11 +185,11 @@ export default function AvatarShowroom({ state, onSelectGender, onGenerate }) {
         )}
       </div>
 
-      <div className="mt-4 grid gap-3 xl:grid-cols-[1fr_auto]">
+      <div className="mt-3 grid gap-2 sm:mt-4 sm:gap-3 xl:grid-cols-[1fr_auto]">
         <StyleMeter selectedCount={selectedCount} selectedScene={selectedScene} selectedStyle={selectedStyle} />
         <button
           onClick={onGenerate}
-          className="inline-flex items-center justify-center gap-3 rounded-[24px] border-2 border-black bg-gradient-to-r from-[#ff2d9b] via-[#ffdf3d] to-[#21d9ff] px-6 py-4 text-base font-black shadow-[7px_7px_0_#151515] transition hover:-translate-y-1"
+          className="inline-flex items-center justify-center gap-2 rounded-[22px] border-2 border-black bg-gradient-to-r from-[#ff2d9b] via-[#ffdf3d] to-[#21d9ff] px-4 py-3 text-sm font-black shadow-[5px_5px_0_#151515] transition hover:-translate-y-1 sm:gap-3 sm:rounded-[24px] sm:px-6 sm:py-4 sm:text-base sm:shadow-[7px_7px_0_#151515]"
         >
           <Camera className="h-5 w-5" />
           生成我的三福穿搭封面

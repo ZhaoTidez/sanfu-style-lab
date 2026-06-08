@@ -5,10 +5,10 @@ import QuickActions from "./QuickActions.jsx";
 
 export default function AICompanionPanel({ state, onQuickAction }) {
   return (
-    <aside className="glass-panel flex min-h-[720px] flex-col overflow-hidden rounded-[30px] p-4 lg:max-h-[calc(100vh-104px)]">
-      <div className="mb-4 flex items-center gap-3 rounded-[24px] border border-black/8 bg-white/62 p-3">
-        <div className="relative flex h-12 w-12 items-center justify-center rounded-full border-2 border-black bg-gradient-to-br from-[#ff2d9b] via-[#ffdf3d] to-[#21d9ff] shadow-[4px_4px_0_#151515]">
-          <Bot className="h-6 w-6" />
+    <aside className="flex min-h-0 min-w-0 flex-col overflow-hidden rounded-[24px] border border-black/5 bg-white p-3 shadow-[0_14px_36px_rgba(25,35,70,.08)] sm:p-4 lg:glass-panel lg:min-h-[720px] lg:max-h-[calc(100vh-104px)] lg:rounded-[30px]">
+      <div className="mb-3 flex items-center gap-3 rounded-[18px] bg-[#f7f9fc] p-3 sm:mb-4 sm:rounded-[24px] sm:border sm:border-black/8 sm:bg-white/62">
+        <div className="relative flex h-10 w-10 items-center justify-center rounded-full border-2 border-black bg-gradient-to-br from-[#ff2d9b] via-[#ffdf3d] to-[#21d9ff] shadow-[3px_3px_0_#151515] sm:h-12 sm:w-12 sm:shadow-[4px_4px_0_#151515]">
+          <Bot className="h-5 w-5 sm:h-6 sm:w-6" />
           <span className="absolute -right-1 -top-1 h-4 w-4 rounded-full border-2 border-white bg-[#a8ff2d]" />
         </div>
         <div>
