@@ -59,7 +59,7 @@ function CssMuse() {
 
 export default function HomePage({ onStart }) {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#f7fbff] text-[#151515]">
+    <main className="relative h-svh overflow-hidden bg-[#f7fbff] text-[#151515] lg:min-h-screen">
       <div className="absolute inset-0 grid-paper opacity-80" />
       <div className="absolute left-[-8rem] top-[-7rem] h-80 w-80 rounded-full bg-[#a8ff2d]/45 blur-3xl" />
       <div className="absolute bottom-[-8rem] right-[-8rem] h-96 w-96 rounded-full bg-[#21d9ff]/35 blur-3xl" />
@@ -69,58 +69,58 @@ export default function HomePage({ onStart }) {
         <FloatingSticker key={item.label} item={item} index={index} />
       ))}
 
-      <section className="relative z-10 mx-auto flex min-h-screen w-full max-w-7xl flex-col justify-between px-5 py-5 sm:px-8 lg:px-10">
-        <header className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3 rounded-full border border-black/10 bg-white/80 px-4 py-2 shadow-neon backdrop-blur-xl">
-            <img src={logoUrl} alt="SANFU" className="h-7 w-auto object-contain" />
+      <section className="relative z-10 mx-auto flex h-full w-full max-w-[430px] flex-col px-4 py-3 sm:px-8 lg:min-h-screen lg:max-w-7xl lg:justify-between lg:px-10 lg:py-5">
+        <header className="flex shrink-0 items-center justify-between gap-3">
+          <div className="flex items-center gap-2 rounded-full border border-black/10 bg-white/80 px-3 py-1.5 shadow-neon backdrop-blur-xl sm:gap-3 sm:px-4 sm:py-2">
+            <img src={logoUrl} alt="SANFU" className="h-6 w-auto object-contain sm:h-7" />
             <span className="hidden h-5 w-px bg-black/15 sm:block" />
             <span className="text-sm font-black tracking-normal">Style Lab</span>
           </div>
-          <div className="rounded-full border border-black/10 bg-white/70 px-4 py-2 text-xs font-bold text-black/70 backdrop-blur-xl">
+          <div className="rounded-full border border-black/10 bg-white/70 px-3 py-1.5 text-[11px] font-bold text-black/70 backdrop-blur-xl sm:px-4 sm:py-2 sm:text-xs">
             三福穿搭实验室
           </div>
         </header>
 
-        <div className="grid flex-1 items-center gap-10 py-10 lg:grid-cols-[1fr_420px]">
-          <div className="max-w-3xl">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border-2 border-black bg-[#a8ff2d] px-4 py-2 text-sm font-black shadow-[6px_6px_0_#151515]">
-              <Sparkles className="h-4 w-4" />
+        <div className="flex min-h-0 flex-1 flex-col gap-3 py-3 lg:grid lg:items-center lg:gap-10 lg:py-10 lg:grid-cols-[1fr_420px]">
+          <div className="shrink-0 lg:max-w-3xl">
+            <div className="mb-2 inline-flex items-center gap-2 rounded-full border-2 border-black bg-[#a8ff2d] px-3 py-1.5 text-xs font-black shadow-[4px_4px_0_#151515] sm:mb-6 sm:px-4 sm:py-2 sm:text-sm sm:shadow-[6px_6px_0_#151515]">
+              <Sparkles className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
               SANFU Style Lab
             </div>
-            <h1 className="neon-text text-5xl font-black leading-[1.04] tracking-normal sm:text-7xl lg:text-8xl">
+            <h1 className="neon-text text-[2rem] font-black leading-[1.04] tracking-normal sm:text-7xl lg:text-8xl">
               不是买一件，
               <span className="block text-[#ff2d9b]">是搭出一种今天</span>
             </h1>
-            <p className="mt-6 max-w-2xl text-lg font-semibold leading-8 text-black/68 sm:text-xl">
+            <p className="mt-2 max-w-2xl text-sm font-semibold leading-5 text-black/68 sm:mt-6 sm:text-xl sm:leading-8">
               三福穿搭实验室，陪你把通勤、开学、聚会、宿舍日常都搭得更有意思。
             </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="mt-3 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:items-center">
               <button
                 onClick={onStart}
-                className="group inline-flex items-center justify-center gap-3 rounded-full border-2 border-black bg-gradient-to-r from-[#ff2d9b] via-[#ffdf3d] to-[#21d9ff] px-7 py-4 text-base font-black text-black shadow-[8px_8px_0_#151515] transition duration-300 hover:-translate-y-1 hover:shadow-[12px_12px_0_#151515]"
+                className="group inline-flex items-center justify-center gap-2 rounded-full border-2 border-black bg-gradient-to-r from-[#ff2d9b] via-[#ffdf3d] to-[#21d9ff] px-5 py-3 text-sm font-black text-black shadow-[5px_5px_0_#151515] transition duration-300 hover:-translate-y-1 hover:shadow-[8px_8px_0_#151515] sm:gap-3 sm:px-7 sm:py-4 sm:text-base sm:shadow-[8px_8px_0_#151515] sm:hover:shadow-[12px_12px_0_#151515]"
               >
                 开始我的今日搭配
                 <ArrowRight className="h-5 w-5 transition group-hover:translate-x-1" />
               </button>
-              <div className="inline-flex items-center gap-2 rounded-full bg-white/70 px-4 py-3 text-sm font-bold text-black/62 backdrop-blur-xl">
+              <div className="hidden items-center gap-2 rounded-full bg-white/70 px-4 py-3 text-sm font-bold text-black/62 backdrop-blur-xl sm:inline-flex">
                 <Camera className="h-4 w-4 text-[#ff2d9b]" />
                 场景 + 风格 + 单品 + 封面生成
               </div>
             </div>
           </div>
 
-          <div className="relative">
-            <div className="absolute inset-x-0 top-4 mx-auto h-72 w-72 rounded-full border-[18px] border-[#21d9ff]/30 bg-[#ff2d9b]/10 blur-sm" />
-            <div className="relative rounded-[44px] border-2 border-black bg-white/65 p-4 shadow-[12px_12px_0_#151515] backdrop-blur-xl">
-              <div className="scanline relative overflow-hidden rounded-[34px] bg-gradient-to-br from-[#fff] via-[#e9fbff] to-[#fff1f8]">
+          <div className="relative min-h-0 flex-1 lg:flex-none">
+            <div className="absolute inset-x-0 top-4 mx-auto h-60 w-60 rounded-full border-[14px] border-[#21d9ff]/30 bg-[#ff2d9b]/10 blur-sm sm:h-72 sm:w-72 sm:border-[18px]" />
+            <div className="relative flex h-full min-h-0 rounded-[28px] border-2 border-black bg-white/65 p-2 shadow-[7px_7px_0_#151515] backdrop-blur-xl sm:rounded-[44px] sm:p-4 sm:shadow-[12px_12px_0_#151515] lg:h-auto">
+              <div className="scanline relative flex min-h-0 flex-1 items-center justify-center overflow-hidden rounded-[22px] bg-gradient-to-br from-[#fff] via-[#e9fbff] to-[#fff1f8] sm:rounded-[34px] lg:flex-none">
                 <img
                   src={coverUrl}
                   alt="三福潮趣穿搭封面"
-                  className="h-[420px] w-full object-cover object-center"
+                  className="h-full max-h-full w-full object-contain object-center lg:h-[420px]"
                   draggable="false"
                 />
               </div>
-              <div className="absolute -bottom-5 left-8 inline-flex rotate-[-3deg] items-center gap-2 rounded-full border-2 border-black bg-[#ffdf3d] px-4 py-2 text-sm font-black shadow-[5px_5px_0_#151515]">
+              <div className="absolute -bottom-3 left-5 inline-flex rotate-[-3deg] items-center gap-1.5 rounded-full border-2 border-black bg-[#ffdf3d] px-3 py-1.5 text-xs font-black shadow-[4px_4px_0_#151515] sm:-bottom-5 sm:left-8 sm:gap-2 sm:px-4 sm:py-2 sm:text-sm sm:shadow-[5px_5px_0_#151515]">
                 <WandSparkles className="h-4 w-4" />
                 潮趣好搭子在线
               </div>
@@ -128,7 +128,7 @@ export default function HomePage({ onStart }) {
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-2 pb-2 text-xs font-black text-black/65">
+        <div className="hidden flex-wrap gap-2 pb-2 text-xs font-black text-black/65 lg:flex">
           {["通勤状态", "开学松弛", "Livehouse 出片", "宿舍随手拍", "Citywalk 亮色", "美妆小心机"].map(
             (tag) => (
               <span key={tag} className="rounded-full border border-black/10 bg-white/65 px-3 py-2 backdrop-blur">
