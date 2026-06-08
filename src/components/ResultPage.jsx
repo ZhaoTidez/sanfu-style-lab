@@ -54,7 +54,7 @@ function UploadStep({ uploadedImage, setUploadedImage, onStart }) {
       </div>
       <div className="glass-panel rounded-[34px] p-5">
         <div className="rounded-[30px] border-2 border-black/10 bg-white/58 p-4">
-          <AvatarLayerStack selectedItems={{}} />
+          <AvatarLayerStack selectedItems={{}} selectedGender="female" />
         </div>
       </div>
     </div>

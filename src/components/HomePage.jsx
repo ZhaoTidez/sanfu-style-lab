@@ -14,7 +14,7 @@ const floatItems = [
 function FloatingSticker({ item, index }) {
   return (
     <div
-      className={`absolute hidden sm:flex h-24 w-24 items-center justify-center rounded-[28px] border-2 border-black bg-white/80 p-3 text-center text-sm font-black shadow-neon backdrop-blur-xl animate-floaty ${item.className}`}
+      className={`absolute hidden h-24 w-24 items-center justify-center rounded-[28px] border-2 border-black bg-white/80 p-3 text-center text-sm font-black shadow-neon backdrop-blur-xl animate-floaty sm:flex ${item.className}`}
       style={{ animationDelay: `${index * 0.35}s` }}
     >
       <span

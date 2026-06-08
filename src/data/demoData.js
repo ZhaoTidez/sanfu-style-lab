@@ -10,7 +10,7 @@ export const scenes = [
     backgroundPosition: "center",
     color: "#21d9ff",
     aiIntro:
-      "周一不用硬撑精致，先把干净利落搭出来，再塞一点有趣的小细节，整个人会轻很多。",
+      "周一不用硬撑精致，先把干净利落搭出来，再垫一点有趣的小细节，整个人会轻很多。",
   },
   {
     id: "campus",
@@ -102,7 +102,7 @@ export const styles = [
     id: "utility",
     name: "山系机能",
     color: "#21d9ff",
-    description: "利落口袋、灰绿层次和可走很远的状态。",
+    description: "利落口袋、灰绿层次和可以走很远的状态。",
   },
   {
     id: "korean",
@@ -137,12 +137,10 @@ export const products = [
     category: "tops",
     styleTags: ["sweetcool", "dopamine"],
     sceneTags: ["livehouse", "campus"],
-    image: "crop-top",
+    image: "黑色短上衣",
     layerType: "top",
     layerColor: "#161616",
     accentColor: "#ff2d9b",
-    textureImage:
-      "https://images.pexels.com/photos/4863011/pexels-photo-4863011.jpeg?auto=compress&cs=tinysrgb&w=900",
     comment: "这件是甜酷底子，稳。",
   },
   {
@@ -151,12 +149,10 @@ export const products = [
     category: "tops",
     styleTags: ["korean", "campus"],
     sceneTags: ["commute", "campus", "dategift"],
-    image: "silver-knit",
+    image: "银灰针织",
     layerType: "top",
     layerColor: "#dfe7f1",
     accentColor: "#8aa5ff",
-    textureImage:
-      "https://images.pexels.com/photos/459473/pexels-photo-459473.jpeg?auto=compress&cs=tinysrgb&w=900",
     comment: "干净但不无聊，适合轻轻出片。",
   },
   {
@@ -165,12 +161,10 @@ export const products = [
     category: "tops",
     styleTags: ["dopamine", "retro"],
     sceneTags: ["citywalk", "dorm"],
-    image: "lime-shirt",
+    image: "亮色衬衫",
     layerType: "top",
     layerColor: "#b7ff37",
     accentColor: "#21d9ff",
-    textureImage:
-      "https://images.pexels.com/photos/36033692/pexels-photo-36033692.jpeg?auto=compress&cs=tinysrgb&w=900",
     comment: "亮一下，生活感就出来了。",
   },
   {
@@ -179,12 +173,10 @@ export const products = [
     category: "bottoms",
     styleTags: ["sweetcool", "campus", "retro"],
     sceneTags: ["campus", "livehouse"],
-    image: "denim-skirt",
+    image: "牛仔半裙",
     layerType: "skirt",
     layerColor: "#4f7cff",
     accentColor: "#ffffff",
-    textureImage:
-      "https://images.pexels.com/photos/36319610/pexels-photo-36319610.jpeg?auto=compress&cs=tinysrgb&w=900",
     comment: "开学第一天假装随意但很会搭。",
   },
   {
@@ -193,12 +185,10 @@ export const products = [
     category: "bottoms",
     styleTags: ["utility", "retro"],
     sceneTags: ["commute", "citywalk"],
-    image: "cargo",
+    image: "工装裤",
     layerType: "pants",
     layerColor: "#697b5d",
     accentColor: "#a8ff2d",
-    textureImage:
-      "https://images.pexels.com/photos/36033692/pexels-photo-36033692.jpeg?auto=compress&cs=tinysrgb&w=900",
     comment: "能走很远，也能把通勤搭轻。",
   },
   {
@@ -207,12 +197,10 @@ export const products = [
     category: "bottoms",
     styleTags: ["dopamine", "campus"],
     sceneTags: ["dorm", "citywalk"],
-    image: "shorts",
+    image: "运动短裤",
     layerType: "shorts",
     layerColor: "#fff7e8",
     accentColor: "#ffdf3d",
-    textureImage:
-      "https://images.pexels.com/photos/459473/pexels-photo-459473.jpeg?auto=compress&cs=tinysrgb&w=900",
     comment: "松弛感一下就出来了。",
   },
   {
@@ -221,12 +209,10 @@ export const products = [
     category: "bags",
     styleTags: ["dopamine", "sweetcool"],
     sceneTags: ["citywalk", "livehouse"],
-    image: "bright-bag",
+    image: "亮色包",
     layerType: "bag",
     layerColor: "#21d9ff",
     accentColor: "#ff2d9b",
-    textureImage:
-      "https://images.pexels.com/photos/459473/pexels-photo-459473.jpeg?auto=compress&cs=tinysrgb&w=900",
     comment: "加它，出片感直接拉满。",
   },
   {
@@ -235,12 +221,10 @@ export const products = [
     category: "bags",
     styleTags: ["korean", "sweetcool"],
     sceneTags: ["dategift", "commute", "livehouse"],
-    image: "silver-bag",
+    image: "银色包",
     layerType: "bag",
     layerColor: "#d8dde8",
     accentColor: "#ffffff",
-    textureImage:
-      "https://images.pexels.com/photos/459473/pexels-photo-459473.jpeg?auto=compress&cs=tinysrgb&w=900",
     comment: "不抢戏，但很有小心机。",
   },
   {
@@ -249,12 +233,10 @@ export const products = [
     category: "hats",
     styleTags: ["retro", "campus", "utility"],
     sceneTags: ["citywalk", "dorm", "commute"],
-    image: "baseball-cap",
+    image: "棒球帽",
     layerType: "hat",
     layerColor: "#1f2937",
     accentColor: "#ffdf3d",
-    textureImage:
-      "https://images.pexels.com/photos/7946640/pexels-photo-7946640.jpeg?auto=compress&cs=tinysrgb&w=900",
     comment: "戴上就有一点街区状态。",
   },
   {
@@ -263,12 +245,10 @@ export const products = [
     category: "hats",
     styleTags: ["sweetcool", "utility"],
     sceneTags: ["livehouse", "commute"],
-    image: "beanie",
+    image: "冷帽",
     layerType: "hat",
     layerColor: "#7c3aed",
     accentColor: "#21d9ff",
-    textureImage:
-      "https://images.pexels.com/photos/7641151/pexels-photo-7641151.jpeg?auto=compress&cs=tinysrgb&w=900",
     comment: "酷一点，但不会太用力。",
   },
   {
@@ -277,7 +257,7 @@ export const products = [
     category: "earrings",
     styleTags: ["sweetcool", "korean"],
     sceneTags: ["livehouse", "dategift"],
-    image: "silver-earrings",
+    image: "银色耳饰",
     layerType: "earrings",
     layerColor: "#e8edf5",
     accentColor: "#ff2d9b",
@@ -289,7 +269,7 @@ export const products = [
     category: "earrings",
     styleTags: ["dopamine", "retro"],
     sceneTags: ["citywalk", "livehouse", "dorm"],
-    image: "neon-ear",
+    image: "星星耳夹",
     layerType: "earrings",
     layerColor: "#a8ff2d",
     accentColor: "#21d9ff",
@@ -301,7 +281,7 @@ export const products = [
     category: "lip",
     styleTags: ["campus", "korean"],
     sceneTags: ["campus", "dategift", "dorm"],
-    image: "pink-lip",
+    image: "粉调唇釉",
     layerType: "lip",
     layerColor: "#ff6fae",
     accentColor: "#ffd1e5",
@@ -313,7 +293,7 @@ export const products = [
     category: "lip",
     styleTags: ["sweetcool", "dopamine"],
     sceneTags: ["livehouse", "citywalk"],
-    image: "berry-lip",
+    image: "莓果唇",
     layerType: "lip",
     layerColor: "#c2185b",
     accentColor: "#ff9ad0",
@@ -325,7 +305,7 @@ export const products = [
     category: "eye",
     styleTags: ["dopamine", "sweetcool"],
     sceneTags: ["livehouse", "dategift"],
-    image: "glitter-eye",
+    image: "闪片眼影",
     layerType: "eye",
     layerColor: "#f8e7ff",
     accentColor: "#ffdf3d",
@@ -337,7 +317,7 @@ export const products = [
     category: "eye",
     styleTags: ["korean", "utility"],
     sceneTags: ["commute", "campus"],
-    image: "blue-eye",
+    image: "雾蓝眼影",
     layerType: "eye",
     layerColor: "#b9ccff",
     accentColor: "#21d9ff",
@@ -349,7 +329,7 @@ export const products = [
     category: "charm",
     styleTags: ["retro", "dopamine"],
     sceneTags: ["citywalk", "dorm"],
-    image: "toy-charm",
+    image: "潮玩包挂",
     layerType: "charm",
     layerColor: "#ffdf3d",
     accentColor: "#ff2d9b",
@@ -361,7 +341,7 @@ export const products = [
     category: "charm",
     styleTags: ["sweetcool", "utility"],
     sceneTags: ["livehouse", "commute"],
-    image: "metal-charm",
+    image: "金属挂件",
     layerType: "charm",
     layerColor: "#c9d3df",
     accentColor: "#a8ff2d",
@@ -373,7 +353,7 @@ export const products = [
     category: "blindbox",
     styleTags: ["campus", "dopamine"],
     sceneTags: ["dorm", "campus", "dategift"],
-    image: "blindbox",
+    image: "盲盒小物",
     layerType: "blindbox",
     layerColor: "#ffd84d",
     accentColor: "#4f7cff",
@@ -385,7 +365,7 @@ export const products = [
     category: "blindbox",
     styleTags: ["sweetcool", "retro"],
     sceneTags: ["livehouse", "citywalk"],
-    image: "mono-box",
+    image: "黑白盲盒",
     layerType: "blindbox",
     layerColor: "#151515",
     accentColor: "#ffffff",
@@ -402,15 +382,15 @@ export const quickActions = [
 ];
 
 export const companionReplies = {
-  "帮我变甜一点":
+  帮我变甜一点:
     "甜感不用堆满，粉调唇釉和一点亮色小物就够。现在这套会更软，但还是有自己的态度。",
-  "帮我变酷一点":
+  帮我变酷一点:
     "想变酷就先收住颜色，再让银色耳饰或金属挂件跳出来。不是很凶，是很有记忆点。",
-  "这套适合约会吗":
+  这套适合约会吗:
     "适合，尤其是想要自然心动感的时候。建议留一个柔光色彩，比如粉调唇釉，会显得不刻意又很会搭。",
-  "还差什么配饰":
+  还差什么配饰:
     "这套已经有状态了，但还差一个被记住的小亮点。听劝，加个耳饰或潮玩挂件，出片稳了。",
-  "一键搭完整套":
+  一键搭完整套:
     "我帮你把底子、亮点和生活感都补上了。现在不是单品拼一起，是今天的状态完整了。",
 };
 
