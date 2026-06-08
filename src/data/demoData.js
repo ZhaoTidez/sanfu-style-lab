@@ -141,6 +141,8 @@ export const products = [
     layerType: "top",
     layerColor: "#161616",
     accentColor: "#ff2d9b",
+    textureImage:
+      "https://images.pexels.com/photos/4863011/pexels-photo-4863011.jpeg?auto=compress&cs=tinysrgb&w=900",
     comment: "这件是甜酷底子，稳。",
   },
   {
@@ -153,6 +155,8 @@ export const products = [
     layerType: "top",
     layerColor: "#dfe7f1",
     accentColor: "#8aa5ff",
+    textureImage:
+      "https://images.pexels.com/photos/459473/pexels-photo-459473.jpeg?auto=compress&cs=tinysrgb&w=900",
     comment: "干净但不无聊，适合轻轻出片。",
   },
   {
@@ -165,6 +169,8 @@ export const products = [
     layerType: "top",
     layerColor: "#b7ff37",
     accentColor: "#21d9ff",
+    textureImage:
+      "https://images.pexels.com/photos/36033692/pexels-photo-36033692.jpeg?auto=compress&cs=tinysrgb&w=900",
     comment: "亮一下，生活感就出来了。",
   },
   {
@@ -177,6 +183,8 @@ export const products = [
     layerType: "skirt",
     layerColor: "#4f7cff",
     accentColor: "#ffffff",
+    textureImage:
+      "https://images.pexels.com/photos/36319610/pexels-photo-36319610.jpeg?auto=compress&cs=tinysrgb&w=900",
     comment: "开学第一天假装随意但很会搭。",
   },
   {
@@ -189,6 +197,8 @@ export const products = [
     layerType: "pants",
     layerColor: "#697b5d",
     accentColor: "#a8ff2d",
+    textureImage:
+      "https://images.pexels.com/photos/36033692/pexels-photo-36033692.jpeg?auto=compress&cs=tinysrgb&w=900",
     comment: "能走很远，也能把通勤搭轻。",
   },
   {
@@ -201,6 +211,8 @@ export const products = [
     layerType: "shorts",
     layerColor: "#fff7e8",
     accentColor: "#ffdf3d",
+    textureImage:
+      "https://images.pexels.com/photos/459473/pexels-photo-459473.jpeg?auto=compress&cs=tinysrgb&w=900",
     comment: "松弛感一下就出来了。",
   },
   {
@@ -213,6 +225,8 @@ export const products = [
     layerType: "bag",
     layerColor: "#21d9ff",
     accentColor: "#ff2d9b",
+    textureImage:
+      "https://images.pexels.com/photos/459473/pexels-photo-459473.jpeg?auto=compress&cs=tinysrgb&w=900",
     comment: "加它，出片感直接拉满。",
   },
   {
@@ -225,6 +239,8 @@ export const products = [
     layerType: "bag",
     layerColor: "#d8dde8",
     accentColor: "#ffffff",
+    textureImage:
+      "https://images.pexels.com/photos/459473/pexels-photo-459473.jpeg?auto=compress&cs=tinysrgb&w=900",
     comment: "不抢戏，但很有小心机。",
   },
   {
@@ -237,6 +253,8 @@ export const products = [
     layerType: "hat",
     layerColor: "#1f2937",
     accentColor: "#ffdf3d",
+    textureImage:
+      "https://images.pexels.com/photos/7946640/pexels-photo-7946640.jpeg?auto=compress&cs=tinysrgb&w=900",
     comment: "戴上就有一点街区状态。",
   },
   {
@@ -249,6 +267,8 @@ export const products = [
     layerType: "hat",
     layerColor: "#7c3aed",
     accentColor: "#21d9ff",
+    textureImage:
+      "https://images.pexels.com/photos/7641151/pexels-photo-7641151.jpeg?auto=compress&cs=tinysrgb&w=900",
     comment: "酷一点，但不会太用力。",
   },
   {

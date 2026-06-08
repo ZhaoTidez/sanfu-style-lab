@@ -10,6 +10,7 @@ export default function LabPage({
   onSelectScene,
   onSelectStyle,
   onSelectCategory,
+  onSelectGender,
   onSelectProduct,
   onQuickAction,
   onGenerate,
@@ -43,7 +44,7 @@ export default function LabPage({
             onSelectCategory={onSelectCategory}
             onSelectProduct={onSelectProduct}
           />
-          <AvatarShowroom state={state} onGenerate={onGenerate} />
+          <AvatarShowroom state={state} onSelectGender={onSelectGender} onGenerate={onGenerate} />
           <AICompanionPanel state={state} onQuickAction={onQuickAction} />
         </div>
       </div>

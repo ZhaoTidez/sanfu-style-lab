@@ -1,4 +1,4 @@
-import { Camera, Sparkles } from "lucide-react";
+import { Camera, Sparkles, UserRound } from "lucide-react";
 import AvatarLayerStack from "./AvatarLayerStack.jsx";
 import StyleMeter from "./StyleMeter.jsx";
 
@@ -63,8 +63,60 @@ function SceneProps({ type }) {
   );
 }
 
-export default function AvatarShowroom({ state, onGenerate }) {
-  const { selectedScene, selectedStyle, selectedItems, selectedCount } = state;
+function GenderGate({ onSelectGender }) {
+  return (
+    <div className="relative z-10 flex w-full max-w-3xl flex-col items-center gap-6 p-5 text-center">
+      <div className="rounded-full border-2 border-black bg-[#a8ff2d] px-4 py-2 text-xs font-black shadow-[5px_5px_0_#151515]">
+        先选择你的换装数字人
+      </div>
+      <h3 className="text-3xl font-black leading-tight sm:text-5xl">选择男女后开始试衣</h3>
+      <p className="max-w-xl text-sm font-bold leading-6 text-black/58">
+        人物会先穿简洁内搭，后续单品会以真实衣物材质图层叠加到身上。
+      </p>
+      <div className="grid w-full gap-4 sm:grid-cols-2">
+        {[
+          { id: "female", label: "女生数字人", color: "#ff7cc8", sub: "甜酷 / 校园 / Citywalk" },
+          { id: "male", label: "男生数字人", color: "#21d9ff", sub: "高街 / 机能 / 通勤" },
+        ].map((option) => (
+          <button
+            key={option.id}
+            onClick={() => onSelectGender(option.id)}
+            className="group rounded-[30px] border-2 border-black bg-white/72 p-4 text-left shadow-[8px_8px_0_rgba(0,0,0,.88)] backdrop-blur transition hover:-translate-y-1"
+          >
+            <div
+              className="mb-4 flex h-44 items-center justify-center overflow-hidden rounded-[24px] border border-black/10"
+              style={{ background: `radial-gradient(circle at 50% 28%, ${option.color}55, transparent 40%), linear-gradient(135deg, #fff, #f2fbff)` }}
+            >
+              <div className="relative h-36 w-24">
+                <div className="absolute left-1/2 top-1 h-16 w-16 -translate-x-1/2 rounded-full border-[3px] border-black bg-[#ffd9cf]" />
+                <div
+                  className={`absolute left-1/2 top-0 h-10 -translate-x-1/2 bg-black ${
+                    option.id === "female" ? "w-20 rounded-t-full" : "w-16 rounded-[20px_20px_12px_12px]"
+                  }`}
+                />
+                <div className="absolute left-1/2 top-[62px] h-20 w-20 -translate-x-1/2 rounded-[24px] border-[3px] border-black bg-white" />
+                <div className="absolute bottom-0 left-4 h-16 w-5 rounded-full border-[3px] border-black bg-[#ffd9cf]" />
+                <div className="absolute bottom-0 right-4 h-16 w-5 rounded-full border-[3px] border-black bg-[#ffd9cf]" />
+              </div>
+            </div>
+            <div className="flex items-center justify-between gap-3">
+              <div>
+                <p className="font-black">{option.label}</p>
+                <p className="mt-1 text-xs font-bold text-black/48">{option.sub}</p>
+              </div>
+              <span className="rounded-full bg-black p-3 text-white transition group-hover:rotate-6">
+                <UserRound className="h-5 w-5" />
+              </span>
+            </div>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default function AvatarShowroom({ state, onSelectGender, onGenerate }) {
+  const { selectedScene, selectedStyle, selectedGender, selectedItems, selectedCount } = state;
   const tint = sceneTints[selectedScene.backgroundType] || "rgba(255,255,255,.28)";
   const background = `
     linear-gradient(180deg, rgba(255,255,255,.70), rgba(255,255,255,.42) 38%, rgba(255,255,255,.74)),
@@ -104,7 +156,11 @@ export default function AvatarShowroom({ state, onGenerate }) {
           <Sparkles className="h-4 w-4 text-[#ff2d9b]" />
           已叠加 {selectedCount} 层灵感
         </div>
-        <AvatarLayerStack selectedItems={selectedItems} />
+        {selectedGender ? (
+          <AvatarLayerStack selectedItems={selectedItems} selectedGender={selectedGender} />
+        ) : (
+          <GenderGate onSelectGender={onSelectGender} />
+        )}
       </div>
 
       <div className="mt-4 grid gap-3 xl:grid-cols-[1fr_auto]">

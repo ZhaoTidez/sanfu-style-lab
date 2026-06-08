@@ -18,6 +18,7 @@ export default function App() {
   const [selectedScene, setSelectedScene] = useState(scenes[0]);
   const [selectedStyle, setSelectedStyle] = useState(styles[0]);
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+  const [selectedGender, setSelectedGender] = useState(null);
   const [selectedItems, setSelectedItems] = useState({});
   const [aiMessages, setAiMessages] = useState([]);
   const [uploadedImage, setUploadedImage] = useState("");
@@ -50,6 +51,15 @@ export default function App() {
 
   const selectCategory = (category) => {
     setSelectedCategory(category);
+  };
+
+  const selectGender = (gender) => {
+    setSelectedGender(gender);
+    addAiMessage(
+      gender === "female"
+        ? "女生数字人就位。先保留干净内搭，接下来每加一件单品都会像换装游戏一样叠到身上。"
+        : "男生数字人就位。先用简洁内搭打底，外层单品会按品类实时穿上去。",
+    );
   };
 
   const selectProduct = (product) => {
@@ -119,6 +129,7 @@ export default function App() {
       selectedScene,
       selectedStyle,
       selectedCategory,
+      selectedGender,
       selectedItems,
       selectedCount,
       aiMessages,
@@ -129,6 +140,7 @@ export default function App() {
       selectedScene,
       selectedStyle,
       selectedCategory,
+      selectedGender,
       selectedItems,
       selectedCount,
       aiMessages,
@@ -158,6 +170,7 @@ export default function App() {
       onSelectScene={selectScene}
       onSelectStyle={selectStyle}
       onSelectCategory={selectCategory}
+      onSelectGender={selectGender}
       onSelectProduct={selectProduct}
       onQuickAction={handleQuickAction}
       onGenerate={goToResult}

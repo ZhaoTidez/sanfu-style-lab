@@ -1,270 +1,240 @@
-const fabricBackground = (base, accent, mode = "cloth") => {
-  if (mode === "denim") {
-    return `
-      radial-gradient(circle at 30% 20%, rgba(255,255,255,.22), transparent 22%),
-      repeating-linear-gradient(100deg, rgba(255,255,255,.12) 0 1px, transparent 1px 9px),
-      repeating-linear-gradient(10deg, rgba(0,0,0,.08) 0 1px, transparent 1px 7px),
-      linear-gradient(135deg, ${base}, #315fbd 58%, #24478f)
-    `;
-  }
-
-  if (mode === "cargo") {
-    return `
-      repeating-linear-gradient(90deg, rgba(255,255,255,.05) 0 1px, transparent 1px 12px),
-      radial-gradient(circle at 65% 18%, rgba(255,255,255,.12), transparent 20%),
-      linear-gradient(135deg, ${base}, #526746 58%, #384333)
-    `;
-  }
-
-  if (mode === "nylon") {
-    return `
-      radial-gradient(circle at 25% 20%, rgba(255,255,255,.48), transparent 18%),
-      linear-gradient(145deg, rgba(255,255,255,.28), transparent 32%),
-      linear-gradient(135deg, ${base}, ${accent} 95%)
-    `;
-  }
-
-  if (mode === "knit") {
-    return `
-      repeating-linear-gradient(90deg, rgba(255,255,255,.30) 0 2px, transparent 2px 10px),
-      linear-gradient(135deg, ${base}, #f8fbff 48%, #b9c4d4)
-    `;
-  }
-
-  return `
-    radial-gradient(circle at 28% 18%, rgba(255,255,255,.22), transparent 18%),
-    repeating-linear-gradient(115deg, rgba(255,255,255,.08) 0 1px, transparent 1px 10px),
-    linear-gradient(135deg, ${base}, #121212 62%, ${accent})
-  `;
+const textureLibrary = {
+  blackMesh:
+    "https://images.pexels.com/photos/4863011/pexels-photo-4863011.jpeg?auto=compress&cs=tinysrgb&w=900",
+  denim:
+    "https://images.pexels.com/photos/36319610/pexels-photo-36319610.jpeg?auto=compress&cs=tinysrgb&w=900",
+  greenKnit:
+    "https://images.pexels.com/photos/36033692/pexels-photo-36033692.jpeg?auto=compress&cs=tinysrgb&w=900",
+  darkCloth:
+    "https://images.pexels.com/photos/7641151/pexels-photo-7641151.jpeg?auto=compress&cs=tinysrgb&w=900",
+  greyCanvas:
+    "https://images.pexels.com/photos/459473/pexels-photo-459473.jpeg?auto=compress&cs=tinysrgb&w=900",
+  blackSatin:
+    "https://images.pexels.com/photos/7946640/pexels-photo-7946640.jpeg?auto=compress&cs=tinysrgb&w=900",
 };
 
-function TopLayer({ product, color, accent }) {
-  const isShirt = product.name.includes("衬衫");
-  const isKnit = product.name.includes("针织");
-  const mode = isKnit ? "knit" : "cloth";
+function getTexture(product) {
+  if (product.textureImage) return product.textureImage;
+  if (product.layerType === "skirt") return textureLibrary.denim;
+  if (product.layerType === "pants") return textureLibrary.greenKnit;
+  if (product.layerType === "shorts") return textureLibrary.greyCanvas;
+  if (product.layerType === "bag") return textureLibrary.greyCanvas;
+  if (product.layerType === "hat") return textureLibrary.blackSatin;
+  if (product.name.includes("青柠")) return textureLibrary.greenKnit;
+  return textureLibrary.blackMesh;
+}
+
+function PersonBase({ gender }) {
+  const female = gender === "female";
 
   return (
-    <div
-      className={`avatar-layer-pop absolute left-1/2 z-30 -translate-x-1/2 border-[3px] border-[#161616] shadow-[0_16px_22px_rgba(0,0,0,.18)] ${
-        isShirt
-          ? "top-[130px] h-[144px] w-[178px] rounded-[34px_34px_28px_28px]"
-          : "top-[150px] h-[112px] w-[150px] rounded-[34px_34px_24px_24px]"
-      }`}
-      style={{
-        background: fabricBackground(color, accent, mode),
-      }}
-    >
-      <span className="absolute left-1/2 top-0 h-9 w-20 -translate-x-1/2 rounded-b-full border-x-[3px] border-b-[3px] border-[#161616] bg-[#ffd9cf]" />
-      <span className="absolute inset-x-5 top-9 border-t border-white/28" />
-      <span className="absolute bottom-3 left-5 right-5 border-t-2 border-dashed border-white/35" />
-      {isShirt && (
+    <g>
+      <ellipse cx="190" cy="508" rx="104" ry="20" fill="rgba(0,0,0,.16)" />
+      <path
+        d={female ? "M112 96C128 33 280 35 294 104C306 166 279 232 190 238C102 232 94 153 112 96Z" : "M121 76C139 36 265 35 280 79C297 121 271 158 190 160C109 158 102 116 121 76Z"}
+        fill={female ? "#221919" : "#1f1a18"}
+      />
+      {female && (
         <>
-          <span className="absolute left-1/2 top-10 h-[86px] w-[3px] -translate-x-1/2 bg-black/28" />
-          <span className="absolute left-9 top-14 h-2 w-2 rounded-full bg-white/75" />
-          <span className="absolute left-9 top-24 h-2 w-2 rounded-full bg-white/75" />
-          <span className="absolute -left-5 top-10 h-24 w-12 rotate-[12deg] rounded-[22px] border-[3px] border-[#161616]" style={{ backgroundColor: color }} />
-          <span className="absolute -right-5 top-10 h-24 w-12 rotate-[-12deg] rounded-[22px] border-[3px] border-[#161616]" style={{ backgroundColor: color }} />
+          <path d="M103 112C71 187 85 318 132 368C146 284 143 180 129 112Z" fill="#1f1716" />
+          <path d="M277 112C309 187 295 318 248 368C234 284 237 180 251 112Z" fill="#1f1716" />
         </>
       )}
-    </div>
-  );
-}
-
-function SkirtLayer({ color, accent }) {
-  return (
-    <div
-      className="avatar-layer-pop absolute left-1/2 top-[258px] z-30 h-[128px] w-[184px] -translate-x-1/2 rounded-b-[58px] border-[3px] border-[#151515] shadow-[0_18px_24px_rgba(0,0,0,.18)]"
-      style={{
-        background: fabricBackground(color, accent, "denim"),
-        clipPath: "polygon(14% 0, 86% 0, 100% 100%, 0 100%)",
-      }}
-    >
-      <span className="absolute inset-x-2 top-0 h-5 rounded-t-lg bg-black/12" />
-      <span className="absolute left-1/2 top-1 h-4 w-4 -translate-x-1/2 rounded-full border-2 border-white/80 bg-[#d7dde9]" />
-      <span className="absolute left-9 top-8 h-10 w-10 rounded-b-[18px] border-2 border-white/45" />
-      <span className="absolute right-9 top-8 h-10 w-10 rounded-b-[18px] border-2 border-white/45" />
-      <span className="absolute bottom-3 left-7 right-7 border-t-2 border-dashed border-white/62" />
-    </div>
-  );
-}
-
-function PantsLayer({ color, accent, shorts = false }) {
-  if (shorts) {
-    return (
-      <div className="avatar-layer-pop absolute left-1/2 top-[264px] z-30 h-[88px] w-[162px] -translate-x-1/2">
-        {["left-0", "right-0"].map((side) => (
-          <div
-            key={side}
-            className={`absolute ${side} h-full w-[78px] rounded-b-[24px] border-[3px] border-[#151515] shadow-[0_10px_18px_rgba(0,0,0,.16)]`}
-            style={{ background: fabricBackground(color, accent, "knit") }}
-          >
-            <span className="absolute inset-x-3 top-4 border-t-2 border-dashed border-black/20" />
-          </div>
-        ))}
-      </div>
-    );
-  }
-
-  return (
-    <div className="avatar-layer-pop absolute left-1/2 top-[258px] z-30 h-[186px] w-[150px] -translate-x-1/2">
-      {["left-0", "right-0"].map((side) => (
-        <div
-          key={side}
-          className={`absolute ${side} h-full w-[70px] rounded-b-[28px] border-[3px] border-[#151515] shadow-[0_16px_22px_rgba(0,0,0,.16)]`}
-          style={{ background: fabricBackground(color, accent, "cargo") }}
-        >
-          <span className="absolute left-2 top-14 h-14 w-12 rounded-lg border-2 border-black/30 bg-white/8" />
-          <span className="absolute inset-x-3 bottom-5 border-t-2 border-dashed border-black/25" />
-        </div>
-      ))}
-      <span className="absolute left-1/2 top-4 h-[126px] w-[3px] -translate-x-1/2 bg-black/30" />
-    </div>
-  );
-}
-
-function HatLayer({ color, accent }) {
-  return (
-    <div className="avatar-layer-pop absolute left-1/2 top-[46px] z-50 h-28 w-44 -translate-x-1/2">
-      <div
-        className="absolute left-1/2 top-0 h-14 w-32 -translate-x-1/2 rounded-t-[54px] border-[3px] border-[#151515] shadow-[0_8px_14px_rgba(0,0,0,.18)]"
-        style={{ background: fabricBackground(color, accent, "cloth") }}
-      >
-        <span className="absolute left-1/2 top-1 h-12 border-l-2 border-white/30" />
-        <span className="absolute left-8 top-3 h-9 rotate-[15deg] border-l border-white/25" />
-        <span className="absolute right-8 top-3 h-9 rotate-[-15deg] border-l border-white/25" />
-      </div>
-      <div
-        className="absolute left-[112px] top-8 h-8 w-24 rounded-full border-[3px] border-[#151515] shadow-[0_7px_12px_rgba(0,0,0,.18)]"
-        style={{ background: `linear-gradient(135deg, ${accent}, #fff7a5)` }}
+      <path
+        d="M139 79C144 41 276 41 281 88C288 147 249 181 190 181C131 181 122 129 139 79Z"
+        fill="#ffd8cb"
+        stroke="#191919"
+        strokeWidth="3"
       />
-    </div>
-  );
-}
-
-function BagLayer({ color, accent }) {
-  return (
-    <div className="avatar-layer-pop absolute right-[58px] top-[226px] z-[45] h-[136px] w-[106px] rotate-[-8deg]">
-      <div className="absolute -top-9 left-1/2 h-20 w-20 -translate-x-1/2 rounded-full border-[5px] border-[#151515] border-b-transparent" />
-      <div
-        className="relative h-full w-full overflow-hidden rounded-[30px] border-[4px] border-[#151515] shadow-[0_20px_24px_rgba(0,0,0,.22)]"
-        style={{ background: fabricBackground(color, accent, "nylon") }}
-      >
-        <span className="absolute left-4 right-4 top-8 border-t-[3px] border-[#151515]/60" />
-        <span className="absolute left-5 top-11 h-8 w-11 rounded-xl border-2 border-white/40 bg-white/18" />
-        <span className="absolute bottom-5 left-1/2 h-7 w-7 -translate-x-1/2 rounded-full border-2 border-[#151515] bg-white/72" />
-        <span className="absolute right-2 top-2 h-8 w-4 rounded-full bg-white/35 blur-sm" />
-      </div>
-    </div>
-  );
-}
-
-function AccessoryLayer({ product, type, color, accent }) {
-  if (type === "earrings") {
-    return (
-      <div className="avatar-layer-pop absolute left-1/2 top-[122px] z-[60] h-16 w-44 -translate-x-1/2">
-        <div className="absolute left-0 h-11 w-8 rounded-full border-[3px] border-[#151515] bg-gradient-to-br from-white via-[#dfe5ef] to-[#8b98a9] shadow-[0_14px_0_var(--accent)]" style={{ "--accent": accent }} />
-        <div className="absolute right-0 h-11 w-8 rounded-full border-[3px] border-[#151515] bg-gradient-to-br from-white via-[#dfe5ef] to-[#8b98a9] shadow-[0_14px_0_var(--accent)]" style={{ "--accent": accent }} />
-      </div>
-    );
-  }
-
-  if (type === "lip") {
-    return (
-      <div
-        className="avatar-layer-pop absolute left-1/2 top-[124px] z-[70] h-3.5 w-12 -translate-x-1/2 rounded-full border border-black/20 shadow-[0_1px_4px_rgba(255,255,255,.8)]"
-        style={{ background: `linear-gradient(90deg, ${color}, ${accent}, ${color})` }}
+      <path
+        d={female ? "M130 76C154 38 236 34 273 77C257 62 231 66 210 73C180 83 152 84 130 76Z" : "M132 75C153 47 246 43 276 76C242 66 207 69 178 75C156 80 143 80 132 75Z"}
+        fill="#171717"
       />
-    );
-  }
+      <ellipse cx="166" cy="117" rx="8" ry="10" fill="#141414" />
+      <ellipse cx="218" cy="117" rx="8" ry="10" fill="#141414" />
+      <circle cx="169" cy="113" r="2.4" fill="white" />
+      <circle cx="221" cy="113" r="2.4" fill="white" />
+      <path d="M174 145C188 153 205 153 218 145" fill="none" stroke="#ff729d" strokeWidth="5" strokeLinecap="round" />
+      <ellipse cx="145" cy="139" rx="12" ry="7" fill="#ff9ab8" opacity=".45" />
+      <ellipse cx="235" cy="139" rx="12" ry="7" fill="#ff9ab8" opacity=".45" />
 
-  if (type === "eye") {
-    return (
-      <div className="avatar-layer-pop absolute left-1/2 top-[101px] z-[70] h-8 w-28 -translate-x-1/2">
-        <div className="absolute left-0 top-1 h-4 w-10 rounded-full blur-[1px]" style={{ backgroundColor: color }} />
-        <div className="absolute right-0 top-1 h-4 w-10 rounded-full blur-[1px]" style={{ backgroundColor: color }} />
-        <span className="absolute left-4 top-0 h-2 w-2 rounded-full" style={{ backgroundColor: accent }} />
-        <span className="absolute right-4 top-0 h-2 w-2 rounded-full" style={{ backgroundColor: accent }} />
-      </div>
-    );
-  }
-
-  if (type === "charm") {
-    return (
-      <div
-        className="avatar-layer-pop absolute right-[50px] top-[322px] z-[60] h-14 w-14 rounded-[18px] border-[3px] border-[#151515] shadow-[10px_8px_0_var(--accent)]"
-        style={{
-          "--accent": accent,
-          background: `radial-gradient(circle at 35% 30%, #fff9, transparent 18%), linear-gradient(135deg, ${color}, ${accent})`,
-        }}
-      >
-        <span className="absolute left-4 top-5 h-2 w-2 rounded-full bg-black" />
-        <span className="absolute right-4 top-5 h-2 w-2 rounded-full bg-black" />
-      </div>
-    );
-  }
-
-  if (type === "blindbox") {
-    return (
-      <div
-        className="avatar-layer-pop absolute left-[66px] bottom-[60px] z-40 h-24 w-20 rotate-[9deg] rounded-[20px] border-[3px] border-[#151515] shadow-[0_14px_18px_rgba(0,0,0,.18)]"
-        style={{ background: `linear-gradient(145deg, ${color}, #fff6 48%, ${accent})` }}
-      >
-        <span className="absolute left-4 top-6 h-3 w-3 rounded-full bg-black" />
-        <span className="absolute right-4 top-6 h-3 w-3 rounded-full bg-black" />
-        <span className="absolute bottom-6 left-1/2 h-2 w-8 -translate-x-1/2 rounded-full bg-black/60" />
-      </div>
-    );
-  }
-
-  return <span className="sr-only">{product.name}</span>;
+      <path
+        d={female ? "M148 185C158 171 222 171 232 185L249 319C232 336 164 336 145 319Z" : "M137 184C154 169 226 169 243 184L252 326C233 341 160 341 141 326Z"}
+        fill="#f8f8f8"
+        stroke="#151515"
+        strokeWidth="3"
+      />
+      <path d="M154 185L122 268C117 281 126 294 140 290L155 252" fill="#ffd8cb" stroke="#151515" strokeWidth="3" strokeLinecap="round" />
+      <path d="M226 185L258 268C263 281 254 294 240 290L225 252" fill="#ffd8cb" stroke="#151515" strokeWidth="3" strokeLinecap="round" />
+      <path d="M165 320L155 490C155 504 178 505 181 491L190 340Z" fill="#ffd8cb" stroke="#151515" strokeWidth="3" />
+      <path d="M215 320L225 490C225 504 202 505 199 491L190 340Z" fill="#ffd8cb" stroke="#151515" strokeWidth="3" />
+      <path d="M137 489C148 478 177 480 186 494C178 507 142 509 128 501C126 498 130 493 137 489Z" fill="#f7fbff" stroke="#151515" strokeWidth="3" />
+      <path d="M243 489C232 478 203 480 194 494C202 507 238 509 252 501C254 498 250 493 243 489Z" fill="#f7fbff" stroke="#151515" strokeWidth="3" />
+    </g>
+  );
 }
 
-function Layer({ product }) {
-  const { layerType: type, layerColor: color, accentColor: accent } = product;
-
-  if (type === "top") return <TopLayer product={product} color={color} accent={accent} />;
-  if (type === "skirt") return <SkirtLayer color={color} accent={accent} />;
-  if (type === "pants") return <PantsLayer color={color} accent={accent} />;
-  if (type === "shorts") return <PantsLayer color={color} accent={accent} shorts />;
-  if (type === "hat") return <HatLayer color={color} accent={accent} />;
-  if (type === "bag") return <BagLayer color={color} accent={accent} />;
-
-  return <AccessoryLayer product={product} type={type} color={color} accent={accent} />;
+function TopLayer({ product, patternId, gender }) {
+  const female = gender === "female";
+  const shirt = product.name.includes("衬衫");
+  return (
+    <g className="avatar-layer-pop">
+      {shirt && (
+        <>
+          <path d="M128 186L96 268C91 282 105 294 119 287L143 226Z" fill={`url(#${patternId})`} stroke="#151515" strokeWidth="3" />
+          <path d="M252 186L284 268C289 282 275 294 261 287L237 226Z" fill={`url(#${patternId})`} stroke="#151515" strokeWidth="3" />
+        </>
+      )}
+      <path
+        d={
+          female
+            ? shirt
+              ? "M129 176C152 163 228 163 251 176L245 306C225 321 158 321 139 306Z"
+              : "M140 184C154 172 226 172 240 184L232 280C215 292 164 292 147 280Z"
+            : shirt
+              ? "M124 176C150 160 230 160 256 176L250 314C228 330 154 330 132 314Z"
+              : "M135 184C154 171 226 171 245 184L239 291C216 305 164 305 141 291Z"
+        }
+        fill={`url(#${patternId})`}
+        stroke="#151515"
+        strokeWidth="3"
+      />
+      <path d="M190 176L190 306" stroke="rgba(255,255,255,.38)" strokeWidth="2" />
+      <path d="M151 225C168 236 213 236 230 225" fill="none" stroke="rgba(255,255,255,.32)" strokeWidth="2" />
+      <path d="M154 288H226" stroke="rgba(0,0,0,.35)" strokeWidth="3" strokeDasharray="6 5" />
+    </g>
+  );
 }
 
-export default function AvatarLayerStack({ selectedItems }) {
+function BottomLayer({ product, patternId, gender }) {
+  const female = gender === "female";
+  if (product.layerType === "skirt") {
+    return (
+      <g className="avatar-layer-pop">
+        <path d="M139 306C158 293 222 293 241 306L267 407C239 424 161 424 133 407Z" fill={`url(#${patternId})`} stroke="#151515" strokeWidth="3" />
+        <path d="M143 313H237" stroke="rgba(0,0,0,.38)" strokeWidth="5" />
+        <circle cx="190" cy="314" r="6" fill="#dfe8f4" stroke="#151515" strokeWidth="2" />
+        <path d="M154 341C165 350 177 350 187 341M203 341C213 350 226 350 237 341" fill="none" stroke="rgba(255,255,255,.48)" strokeWidth="2" />
+      </g>
+    );
+  }
+  if (product.layerType === "shorts") {
+    return (
+      <g className="avatar-layer-pop">
+        <path d="M145 306H190V374H130Z" fill={`url(#${patternId})`} stroke="#151515" strokeWidth="3" />
+        <path d="M190 306H235L250 374H190Z" fill={`url(#${patternId})`} stroke="#151515" strokeWidth="3" />
+        <path d="M146 318H234" stroke="rgba(0,0,0,.35)" strokeWidth="4" />
+      </g>
+    );
+  }
+  return (
+    <g className="avatar-layer-pop">
+      <path d={female ? "M146 305H190L184 493C174 500 156 497 154 489Z" : "M138 306H190L184 493C172 500 151 497 149 489Z"} fill={`url(#${patternId})`} stroke="#151515" strokeWidth="3" />
+      <path d={female ? "M190 305H234L226 489C224 497 206 500 196 493Z" : "M190 306H242L231 489C229 497 208 500 196 493Z"} fill={`url(#${patternId})`} stroke="#151515" strokeWidth="3" />
+      <path d="M190 325V454" stroke="rgba(0,0,0,.38)" strokeWidth="3" />
+      <path d="M155 363H183M207 363H235" stroke="rgba(255,255,255,.35)" strokeWidth="2" />
+    </g>
+  );
+}
+
+function BagLayer({ patternId }) {
+  return (
+    <g className="avatar-layer-pop">
+      <path d="M250 262C259 228 314 231 320 268" fill="none" stroke="#151515" strokeWidth="7" />
+      <path d="M252 261H324L331 365C315 382 263 382 245 365Z" fill={`url(#${patternId})`} stroke="#151515" strokeWidth="3" />
+      <path d="M264 300H315" stroke="rgba(0,0,0,.45)" strokeWidth="4" />
+      <circle cx="291" cy="342" r="12" fill="rgba(255,255,255,.72)" stroke="#151515" strokeWidth="2" />
+    </g>
+  );
+}
+
+function HatLayer({ patternId, gender }) {
+  return (
+    <g className="avatar-layer-pop">
+      <path d={gender === "female" ? "M130 72C150 38 241 37 270 72C249 65 219 67 190 70C161 73 146 76 130 72Z" : "M128 65C151 37 242 37 274 66C247 58 215 60 190 64C164 68 145 70 128 65Z"} fill={`url(#${patternId})`} stroke="#151515" strokeWidth="3" />
+      <path d="M248 69C278 66 298 73 310 88C286 91 265 88 248 80Z" fill={`url(#${patternId})`} stroke="#151515" strokeWidth="3" />
+    </g>
+  );
+}
+
+function AccessoryLayer({ product }) {
+  if (product.layerType === "earrings") {
+    return (
+      <g className="avatar-layer-pop">
+        <circle cx="133" cy="142" r="10" fill="#e8edf5" stroke="#151515" strokeWidth="3" />
+        <circle cx="267" cy="142" r="10" fill="#e8edf5" stroke="#151515" strokeWidth="3" />
+        <circle cx="133" cy="166" r="8" fill={product.accentColor} stroke="#151515" strokeWidth="2" />
+        <circle cx="267" cy="166" r="8" fill={product.accentColor} stroke="#151515" strokeWidth="2" />
+      </g>
+    );
+  }
+  if (product.layerType === "lip") {
+    return <path className="avatar-layer-pop" d="M174 145C188 155 205 155 219 145" fill="none" stroke={product.layerColor} strokeWidth="6" strokeLinecap="round" />;
+  }
+  if (product.layerType === "eye") {
+    return (
+      <g className="avatar-layer-pop" opacity=".9">
+        <path d="M151 108C160 100 172 100 181 108" stroke={product.layerColor} strokeWidth="5" strokeLinecap="round" />
+        <path d="M209 108C218 100 230 100 239 108" stroke={product.layerColor} strokeWidth="5" strokeLinecap="round" />
+      </g>
+    );
+  }
+  if (product.layerType === "charm") {
+    return (
+      <g className="avatar-layer-pop">
+        <path d="M318 341L343 364L324 390L295 370Z" fill={product.layerColor} stroke="#151515" strokeWidth="3" />
+        <circle cx="323" cy="365" r="3" fill="#151515" />
+        <circle cx="333" cy="373" r="3" fill="#151515" />
+      </g>
+    );
+  }
+  if (product.layerType === "blindbox") {
+    return (
+      <g className="avatar-layer-pop">
+        <rect x="55" y="376" width="56" height="74" rx="15" fill={product.layerColor} stroke="#151515" strokeWidth="3" transform="rotate(-8 83 413)" />
+        <circle cx="75" cy="405" r="4" fill="#151515" />
+        <circle cx="94" cy="402" r="4" fill="#151515" />
+      </g>
+    );
+  }
+  return null;
+}
+
+function ClothingLayer({ product, gender, index }) {
+  const patternId = `cloth-${product.id}-${index}`;
+  const texture = getTexture(product);
+  return (
+    <>
+      <defs>
+        <pattern id={patternId} patternUnits="objectBoundingBox" width="1" height="1">
+          <image href={texture} x="0" y="0" width="360" height="520" preserveAspectRatio="xMidYMid slice" />
+        </pattern>
+      </defs>
+      {product.layerType === "top" && <TopLayer product={product} patternId={patternId} gender={gender} />}
+      {["skirt", "pants", "shorts"].includes(product.layerType) && <BottomLayer product={product} patternId={patternId} gender={gender} />}
+      {product.layerType === "bag" && <BagLayer patternId={patternId} />}
+      {product.layerType === "hat" && <HatLayer patternId={patternId} gender={gender} />}
+      {!["top", "skirt", "pants", "shorts", "bag", "hat"].includes(product.layerType) && <AccessoryLayer product={product} />}
+    </>
+  );
+}
+
+export default function AvatarLayerStack({ selectedItems, selectedGender = "female" }) {
   const layers = Object.values(selectedItems);
 
   return (
-    <div className="relative h-[540px] w-[380px] max-w-[92vw]">
-      <div className="absolute bottom-6 left-1/2 h-12 w-72 -translate-x-1/2 rounded-full bg-black/15 blur-lg" />
-
-      <div className="absolute left-1/2 top-[54px] z-20 h-[112px] w-[104px] -translate-x-1/2 rounded-[48px_48px_42px_42px] border-[3px] border-[#151515] bg-gradient-to-b from-[#ffe0d6] to-[#f2b9aa] shadow-[0_12px_18px_rgba(0,0,0,.16)]" />
-      <div className="absolute left-1/2 top-[44px] z-30 h-[78px] w-[128px] -translate-x-1/2 rounded-t-[62px] bg-gradient-to-b from-[#211a1a] to-[#090909]" />
-      <div className="absolute left-[116px] top-[72px] z-[25] h-[180px] w-20 -rotate-[10deg] rounded-full bg-gradient-to-b from-[#211a1a] to-[#070707]" />
-      <div className="absolute right-[116px] top-[72px] z-[25] h-[180px] w-20 rotate-[10deg] rounded-full bg-gradient-to-b from-[#211a1a] to-[#070707]" />
-      <div className="absolute left-[153px] top-[101px] z-40 h-4 w-4 rounded-full bg-[#151515]" />
-      <div className="absolute right-[153px] top-[101px] z-40 h-4 w-4 rounded-full bg-[#151515]" />
-      <div className="absolute left-[158px] top-[100px] z-50 h-1.5 w-1.5 rounded-full bg-white" />
-      <div className="absolute right-[158px] top-[100px] z-50 h-1.5 w-1.5 rounded-full bg-white" />
-      <div className="absolute left-[144px] top-[120px] z-40 h-3 w-6 rounded-full bg-[#ff9ab8]/45 blur-sm" />
-      <div className="absolute right-[144px] top-[120px] z-40 h-3 w-6 rounded-full bg-[#ff9ab8]/45 blur-sm" />
-      <div className="absolute left-1/2 top-[132px] z-[45] h-2.5 w-9 -translate-x-1/2 rounded-full bg-[#ff7aa7]" />
-
-      <div className="absolute left-1/2 top-[148px] z-10 h-[166px] w-[144px] -translate-x-1/2 rounded-[42px_42px_30px_30px] border-[3px] border-[#151515] bg-gradient-to-b from-[#fff8f4] to-[#ffd6c9] shadow-[0_18px_22px_rgba(0,0,0,.12)]">
-        <span className="absolute left-1/2 top-2 h-12 w-16 -translate-x-1/2 rounded-b-full border-b-2 border-black/10" />
-        <span className="absolute left-5 top-14 h-1 w-8 rounded-full bg-white/60" />
-      </div>
-      <div className="absolute left-[88px] top-[170px] z-[5] h-[158px] w-10 rotate-[13deg] rounded-full border-[3px] border-[#151515] bg-gradient-to-b from-[#ffe0d6] to-[#f4b9aa]" />
-      <div className="absolute right-[88px] top-[170px] z-[5] h-[158px] w-10 rotate-[-13deg] rounded-full border-[3px] border-[#151515] bg-gradient-to-b from-[#ffe0d6] to-[#f4b9aa]" />
-      <div className="absolute left-[134px] top-[306px] z-[5] h-[166px] w-12 rounded-full border-[3px] border-[#151515] bg-gradient-to-b from-[#ffe0d6] to-[#f4b9aa]" />
-      <div className="absolute right-[134px] top-[306px] z-[5] h-[166px] w-12 rounded-full border-[3px] border-[#151515] bg-gradient-to-b from-[#ffe0d6] to-[#f4b9aa]" />
-      <div className="absolute left-[112px] top-[458px] z-30 h-8 w-24 rounded-[18px] border-[3px] border-[#151515] bg-gradient-to-br from-white to-[#dfe7f4]" />
-      <div className="absolute right-[112px] top-[458px] z-30 h-8 w-24 rounded-[18px] border-[3px] border-[#151515] bg-gradient-to-br from-white to-[#dfe7f4]" />
-
-      {layers.map((product) => (
-        <Layer key={product.id} product={product} />
-      ))}
+    <div className="relative z-10 h-[540px] w-[380px] max-w-[92vw]">
+      <svg
+        viewBox="0 0 380 540"
+        className="h-full w-full drop-shadow-[0_24px_28px_rgba(0,0,0,.22)]"
+        role="img"
+        aria-label={`${selectedGender === "female" ? "女生" : "男生"}动漫换装数字人`}
+      >
+        <PersonBase gender={selectedGender} />
+        {layers.map((product, index) => (
+          <ClothingLayer key={product.id} product={product} gender={selectedGender} index={index} />
+        ))}
+      </svg>
     </div>
   );
 }
