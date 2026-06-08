@@ -26,13 +26,13 @@ export default function LabPage({
   const drawerTitle = isFilterOpen ? "灵感筛选" : "AI 好搭子";
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-[#f5f7fb] text-[#151515] lg:bg-[#f7fbff]">
+    <main className="h-svh overflow-hidden bg-[#f5f7fb] text-[#151515] lg:min-h-screen lg:overflow-x-hidden lg:overflow-y-auto lg:bg-[#f7fbff]">
       <div className="fixed inset-0 hidden grid-paper opacity-70 lg:block" />
       <div className="fixed left-[-8rem] top-[-8rem] hidden h-72 w-72 rounded-full bg-[#ff2d9b]/20 blur-3xl lg:block" />
       <div className="fixed bottom-[-9rem] right-[-8rem] hidden h-96 w-96 rounded-full bg-[#21d9ff]/25 blur-3xl lg:block" />
 
-      <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-[430px] flex-col px-3 pb-4 pt-2 lg:max-w-[1740px] lg:px-5 lg:py-3">
-        <header className="sticky top-2 z-30 mb-3 flex items-center justify-between gap-3 rounded-[22px] border border-black/5 bg-white/92 px-3 py-2.5 shadow-[0_10px_30px_rgba(25,35,70,.08)] backdrop-blur-xl lg:static lg:rounded-[28px] lg:border-white/75 lg:bg-white/70 lg:px-4 lg:py-3 lg:shadow-neon">
+      <div className="relative z-10 mx-auto flex h-full w-full max-w-[430px] flex-col px-3 pb-2 pt-2 lg:min-h-screen lg:max-w-[1740px] lg:px-5 lg:py-3">
+        <header className="z-30 mb-2 flex shrink-0 items-center justify-between gap-3 rounded-[20px] border border-black/5 bg-white/92 px-3 py-2 shadow-[0_10px_30px_rgba(25,35,70,.08)] backdrop-blur-xl lg:mb-3 lg:rounded-[28px] lg:border-white/75 lg:bg-white/70 lg:px-4 lg:py-3 lg:shadow-neon">
           <div className="flex items-center gap-3">
             <img src={logoUrl} alt="SANFU" className="h-8 w-auto object-contain" />
             <div>
@@ -46,7 +46,7 @@ export default function LabPage({
           </div>
         </header>
 
-        <div className="grid min-w-0 flex-1 gap-3 lg:grid-cols-[minmax(280px,25%)_minmax(440px,1fr)_minmax(300px,25%)]">
+        <div className="grid min-h-0 min-w-0 flex-1 grid-rows-[minmax(0,1fr)] gap-3 overflow-hidden lg:grid-cols-[minmax(280px,25%)_minmax(440px,1fr)_minmax(300px,25%)] lg:grid-rows-none lg:overflow-visible">
           <div className="hidden min-w-0 lg:order-1 lg:block">
             <FilterPanel
               state={state}

@@ -6,14 +6,14 @@ export default function StyleMeter({ selectedCount, selectedScene, selectedStyle
   ];
 
   return (
-    <div className="grid gap-3 rounded-[24px] border border-black/8 bg-white/62 p-4 sm:grid-cols-3">
+    <div className="grid grid-cols-3 gap-2 rounded-[18px] border border-black/8 bg-white/62 p-2.5 sm:gap-3 sm:rounded-[24px] sm:p-4">
       {meters.map((meter) => (
         <div key={meter.label}>
-          <div className="mb-2 flex items-center justify-between gap-2">
-            <span className="text-xs font-black text-black/55">{meter.label}</span>
-            <span className="text-xs font-black">{meter.value}</span>
+          <div className="mb-1 flex items-center justify-between gap-1 sm:mb-2 sm:gap-2">
+            <span className="truncate text-[10px] font-black text-black/55 sm:text-xs">{meter.label}</span>
+            <span className="text-[10px] font-black sm:text-xs">{meter.value}</span>
           </div>
-          <div className="h-3 overflow-hidden rounded-full bg-black/8">
+          <div className="h-2 overflow-hidden rounded-full bg-black/8 sm:h-3">
             <div
               className="h-full rounded-full transition-all duration-500"
               style={{ width: `${meter.value}%`, backgroundColor: meter.color }}

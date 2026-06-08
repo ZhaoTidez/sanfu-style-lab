@@ -1,6 +1,7 @@
 import { ArrowRight, Camera, Sparkles, WandSparkles } from "lucide-react";
 
 const logoUrl = new URL("../../e8745093e85fb076b47c1f8fb171db95.jpg", import.meta.url).href;
+const coverUrl = new URL("../assets/anime-outfit-cover.png", import.meta.url).href;
 
 const floatItems = [
   { label: "短上衣", className: "left-[7%] top-[22%] rotate-[-10deg]", color: "#ff2d9b" },
@@ -112,7 +113,12 @@ export default function HomePage({ onStart }) {
             <div className="absolute inset-x-0 top-4 mx-auto h-72 w-72 rounded-full border-[18px] border-[#21d9ff]/30 bg-[#ff2d9b]/10 blur-sm" />
             <div className="relative rounded-[44px] border-2 border-black bg-white/65 p-4 shadow-[12px_12px_0_#151515] backdrop-blur-xl">
               <div className="scanline relative overflow-hidden rounded-[34px] bg-gradient-to-br from-[#fff] via-[#e9fbff] to-[#fff1f8]">
-                <CssMuse />
+                <img
+                  src={coverUrl}
+                  alt="三福潮趣穿搭封面"
+                  className="h-[420px] w-full object-cover object-center"
+                  draggable="false"
+                />
               </div>
               <div className="absolute -bottom-5 left-8 inline-flex rotate-[-3deg] items-center gap-2 rounded-full border-2 border-black bg-[#ffdf3d] px-4 py-2 text-sm font-black shadow-[5px_5px_0_#151515]">
                 <WandSparkles className="h-4 w-4" />
