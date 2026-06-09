@@ -37,7 +37,7 @@ export default function ProductGrid({
         </div>
       ) : (
         <div className="flex min-h-0 flex-1 items-center rounded-[20px] border border-dashed border-black/12 bg-white/58 p-4 text-xs font-bold leading-5 text-black/45">
-          这个品类暂时没有样例，后续可以在数据里继续追加。
+          这个品类暂时没有素材，放入图片后会在这里展示。
         </div>
       )}
     </section>

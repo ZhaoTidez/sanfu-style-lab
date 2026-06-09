@@ -18,32 +18,18 @@ function DetailVisual({ product }) {
 
   if (asset) {
     return (
-      <div className="relative flex h-44 items-center justify-center overflow-hidden rounded-[22px] border border-black/10 bg-gradient-to-br from-white via-[#f7fbff] to-[#ecf8ff]">
+      <div className="relative flex h-56 items-center justify-center overflow-hidden rounded-[22px] border border-black/10 bg-gradient-to-br from-white via-[#f7fbff] to-[#ecf8ff]">
         <img
           src={asset}
           alt=""
-          className="h-full w-full object-contain p-2 drop-shadow-[0_14px_18px_rgba(0,0,0,.2)]"
+          className="h-full w-full object-contain p-2 drop-shadow-[0_14px_18px_rgba(0,0,0,.16)]"
           draggable="false"
         />
       </div>
     );
   }
 
-  return (
-    <div className="relative h-44 overflow-hidden rounded-[22px] border border-black/10 bg-gradient-to-br from-white via-[#f7fbff] to-[#ecf8ff]">
-      <div
-        className="absolute left-1/2 top-1/2 h-28 w-28 -translate-x-1/2 -translate-y-1/2 rotate-[-8deg] rounded-[30px] border-2 border-black shadow-[6px_6px_0_rgba(0,0,0,.13)]"
-        style={{ backgroundColor: product?.layerColor || "#dfe7f1" }}
-      />
-      <div
-        className="absolute bottom-8 right-10 h-14 w-14 rotate-[14deg] rounded-full border-2 border-black"
-        style={{ backgroundColor: product?.accentColor || "#21d9ff" }}
-      />
-      <div className="absolute left-4 top-4 rounded-full border border-black/10 bg-white/78 px-3 py-1 text-[10px] font-black">
-        样例视觉
-      </div>
-    </div>
-  );
+  return null;
 }
 
 function ProductDetailModal({ detail, onClose }) {
@@ -68,8 +54,8 @@ function ProductDetailModal({ detail, onClose }) {
       <section className="relative w-full max-w-[360px] rounded-[28px] border-2 border-black bg-white p-4 shadow-[10px_10px_0_rgba(0,0,0,.82)]">
         <div className="mb-3 flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <p className="text-[10px] font-black uppercase text-black/38">Sample Detail</p>
-            <h3 className="mt-1 text-lg font-black leading-6">{product?.name || `${category.name}样例`}</h3>
+            <p className="text-[10px] font-black uppercase text-black/38">Product Detail</p>
+            <h3 className="mt-1 text-lg font-black leading-6">{product?.name || `${category.name}暂无素材`}</h3>
           </div>
           <button
             type="button"
@@ -81,18 +67,24 @@ function ProductDetailModal({ detail, onClose }) {
           </button>
         </div>
 
-        <DetailVisual product={product} />
+        {product ? (
+          <DetailVisual product={product} />
+        ) : (
+          <div className="rounded-[22px] border border-dashed border-black/12 bg-black/[.02] px-4 py-8 text-center text-xs font-bold leading-5 text-black/42">
+            当前分类暂无素材图，放入图片后会在这里展示。
+          </div>
+        )}
 
         <div className="mt-3 flex flex-wrap gap-1.5">
           <span className="rounded-full bg-[#ffdf3d] px-2.5 py-1 text-[10px] font-black">
             {category.name}
           </span>
           <span className="rounded-full bg-[#21d9ff] px-2.5 py-1 text-[10px] font-black">
-            {product?.isVisualReference ? "评委参考" : "样例展示"}
+            {product?.isVisualReference ? "评委参考" : "素材展示"}
           </span>
           {isFallback && (
             <span className="rounded-full bg-black px-2.5 py-1 text-[10px] font-black text-white">
-              替代详情
+              同类素材
             </span>
           )}
           {tagNames.map((tag) => (
@@ -104,8 +96,8 @@ function ProductDetailModal({ detail, onClose }) {
 
         <p className="mt-3 text-xs font-semibold leading-5 text-black/58">
           {isFallback
-            ? "当前部位还没有选择具体商品，这里先用同品类样例作为详情页替代展示。"
-            : "当前没有独立商品详情页，这里先用样例弹窗展示该部位的关键信息。"}
+            ? "当前部位还没有选择具体商品，这里会展示同品类已有素材。"
+            : "当前没有独立商品详情页，这里先展示该素材的关键信息。"}
         </p>
         <p className="mt-2 rounded-[18px] bg-black/5 px-3 py-2 text-xs font-bold leading-5 text-black/62">
           {product?.comment || "后续可以在这里接入真实商品图、价格、尺码、材质和购买入口。"}
@@ -144,7 +136,7 @@ export default function OutfitList({ selectedGender, selectedItems }) {
       </div>
       <p className="mb-3 text-xs font-bold text-black/50">
         {selectedGender
-          ? `已搭出 ${selectedCount} 件灵感样例，点击部位查看详情`
+          ? `已搭出 ${selectedCount} 件灵感素材，点击部位查看详情`
           : "先选择性别，再开始搭配"}
       </p>
       <div className="grid gap-2">

@@ -47,7 +47,7 @@ export default function App() {
   const selectStyle = (style) => {
     setSelectedStyle(style);
     addAiMessage(
-      `${style.name}收到。接下来我会优先帮你挑更贴这个气质的展示样例，让今天看起来更完整。`,
+      `${style.name}收到。接下来我会优先帮你挑更贴这个气质的素材，让今天看起来更完整。`,
     );
   };
 
@@ -78,7 +78,7 @@ export default function App() {
     addAiMessage(
       product.isVisualReference
         ? `${product.name}已放到展示区。这是套装品类的真实可视化参考位，后续可以直接替换成你提供的套装图。`
-        : `${product.name}已加入样例清单。这个品类目前只做方向展示，不作为最终真实可视化。`,
+        : `${product.name}已加入素材清单。这个品类目前用于单品素材展示，不作为最终真实套装可视化。`,
     );
   };
 

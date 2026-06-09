@@ -71,11 +71,6 @@ export default function AvatarLayerStack({ selectedItems, selectedGender = "fema
             className="pointer-events-none absolute inset-0 z-10 h-full w-full object-contain drop-shadow-[0_24px_28px_rgba(0,0,0,.24)]"
             draggable="false"
           />
-          {visualOutfit && (
-            <div className="absolute left-1/2 top-1/2 z-40 w-48 -translate-x-1/2 -translate-y-1/2 rounded-[24px] border-2 border-black bg-white/88 px-4 py-3 text-center text-xs font-black leading-5 shadow-[6px_6px_0_#151515]">
-              套装图片待替换
-            </div>
-          )}
         </>
       )}
       {!visualOutfitAsset &&
