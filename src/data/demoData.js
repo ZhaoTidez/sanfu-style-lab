@@ -166,7 +166,7 @@ export const products = [
   {
     id: "female-outfit-showcase-01",
     assetId: "female-1",
-    name: "女生评委参考套装 A",
+    name: "格纹荷叶边学院套装",
     category: "outfits",
     gender: ["female"],
     styleTags: ["sweetcool", "dopamine", "datecore"],
@@ -181,7 +181,7 @@ export const products = [
   {
     id: "female-outfit-showcase-02",
     assetId: "female-2",
-    name: "女生评委参考套装 B",
+    name: "灰T黑裙甜酷机车套装",
     category: "outfits",
     gender: ["female"],
     styleTags: ["korean", "softcampus", "datecore"],
@@ -196,7 +196,7 @@ export const products = [
   {
     id: "male-outfit-showcase-01",
     assetId: "male-1",
-    name: "男生评委参考套装 A",
+    name: "粉T浅卡工装高街套装",
     category: "outfits",
     gender: ["male"],
     styleTags: ["utility", "street", "retro"],
@@ -211,7 +211,7 @@ export const products = [
   {
     id: "male-outfit-showcase-02",
     assetId: "male-2",
-    name: "男生评委参考套装 B",
+    name: "奶油T格衬Cityboy套装",
     category: "outfits",
     gender: ["male"],
     styleTags: ["cleanfit", "smartcasual", "retro"],
@@ -226,7 +226,7 @@ export const products = [
   {
     id: "top-black-crop",
     assetId: "female-shirt-1",
-    name: "粉色一字肩上衣",
+    name: "柔粉一字肩短袖上衣",
     category: "tops",
     gender: ["female"],
     styleTags: ["sweetcool", "dopamine"],
@@ -241,7 +241,7 @@ export const products = [
   {
     id: "top-silver-knit",
     assetId: "female-shirt-2",
-    name: "浅灰纽扣短袖",
+    name: "浅灰V领纽扣短袖T",
     category: "tops",
     gender: ["female"],
     styleTags: ["korean", "softcampus"],
@@ -256,7 +256,7 @@ export const products = [
   {
     id: "male-showcase-top-pink-shirt",
     assetId: "male-shirt-1",
-    name: "粉色机能衬衫",
+    name: "黑色胸标宽松短袖T",
     category: "tops",
     gender: ["male"],
     styleTags: ["street", "utility"],
@@ -271,7 +271,7 @@ export const products = [
   {
     id: "male-clean-overshirt",
     assetId: "male-shirt-2",
-    name: "雾蓝宽松外套",
+    name: "浅灰字母拼线宽松T",
     category: "tops",
     gender: ["male"],
     styleTags: ["cleanfit", "smartcasual"],
@@ -286,7 +286,7 @@ export const products = [
   {
     id: "bottom-denim-skirt",
     assetId: "female-trousers-1",
-    name: "浅蓝牛仔五分裤",
+    name: "Hello Kitty浅蓝牛仔五分裤",
     category: "bottoms",
     gender: ["female"],
     styleTags: ["sweetcool", "softcampus"],
@@ -301,7 +301,7 @@ export const products = [
   {
     id: "bottom-white-shorts",
     assetId: "female-trousers-2",
-    name: "深蓝荷叶腰阔腿裤",
+    name: "藏蓝荷叶腰阔腿裤",
     category: "bottoms",
     gender: ["female"],
     styleTags: ["dopamine", "softcampus"],
@@ -316,7 +316,7 @@ export const products = [
   {
     id: "male-showcase-bottom-cargo-pants",
     assetId: "male-trousers-1",
-    name: "多袋宽松长裤",
+    name: "浅卡垂感宽腿工装裤",
     category: "bottoms",
     gender: ["male"],
     styleTags: ["utility", "street"],
@@ -331,7 +331,7 @@ export const products = [
   {
     id: "male-showcase-bottom-clean-pants",
     assetId: "male-trousers-2",
-    name: "灰调直筒长裤",
+    name: "黑色破洞绑带工装短裤",
     category: "bottoms",
     gender: ["male"],
     styleTags: ["cleanfit", "smartcasual", "retro"],
@@ -346,7 +346,7 @@ export const products = [
   {
     id: "female-platform-sneakers",
     assetId: "female-shoes-1",
-    name: "银白厚底运动鞋",
+    name: "黑色双扣厚底玛丽珍",
     category: "shoes",
     gender: ["female"],
     styleTags: ["sweetcool", "dopamine"],
@@ -361,7 +361,7 @@ export const products = [
   {
     id: "female-soft-sneakers",
     assetId: "female-shoes-2",
-    name: "柔光休闲鞋",
+    name: "青柠派对洞洞鞋",
     category: "shoes",
     gender: ["female"],
     styleTags: ["korean", "softcampus", "datecore"],
@@ -376,7 +376,7 @@ export const products = [
   {
     id: "male-showcase-shoes-green",
     assetId: "male-shoes-1",
-    name: "荧光绿运动鞋",
+    name: "黑白贴脚休闲跑鞋",
     category: "shoes",
     gender: ["male"],
     styleTags: ["street", "utility"],
@@ -391,7 +391,7 @@ export const products = [
   {
     id: "male-clean-sneakers",
     assetId: "male-shoes-2",
-    name: "黑白休闲鞋",
+    name: "黑色低帮帆布板鞋",
     category: "shoes",
     gender: ["male"],
     styleTags: ["cleanfit", "smartcasual", "retro"],
@@ -406,7 +406,7 @@ export const products = [
   {
     id: "bag-bright",
     assetId: "female-bag-1",
-    name: "亮色腋下包",
+    name: "奶白菱格链条肩包",
     category: "bags",
     gender: ["female"],
     styleTags: ["dopamine", "sweetcool"],
@@ -421,7 +421,7 @@ export const products = [
   {
     id: "bag-silver",
     assetId: "female-bag-2",
-    name: "银色云朵包",
+    name: "奶油小熊手提包",
     category: "bags",
     gender: ["female"],
     styleTags: ["korean", "sweetcool"],
@@ -436,7 +436,7 @@ export const products = [
   {
     id: "female-cat-cap",
     assetId: "female-accessories-1",
-    name: "猫耳刺绣棒球帽",
+    name: "浅绿猫耳刺绣棒球帽",
     category: "hats",
     gender: ["female"],
     styleTags: ["dopamine", "softcampus"],
@@ -451,7 +451,7 @@ export const products = [
   {
     id: "female-soft-sun-hat",
     assetId: "female-accessories-2",
-    name: "浅粉褶边防晒帽",
+    name: "浅粉褶边防晒渔夫帽",
     category: "hats",
     gender: ["female"],
     styleTags: ["korean", "datecore", "softcampus"],
@@ -466,7 +466,7 @@ export const products = [
   {
     id: "ear-silver",
     assetId: "female-jewelry-1",
-    name: "银色饰品",
+    name: "银色蝴蝶钥匙项链",
     category: "earrings",
     gender: ["female"],
     styleTags: ["sweetcool", "korean"],
@@ -481,7 +481,7 @@ export const products = [
   {
     id: "ear-neon",
     assetId: "female-jewerly-2",
-    name: "荧光星星饰品",
+    name: "粉晶花朵流苏耳坠",
     category: "earrings",
     gender: ["female"],
     styleTags: ["dopamine", "sweetcool"],
@@ -496,7 +496,7 @@ export const products = [
   {
     id: "male-showcase-face-mask-glasses",
     assetId: "male-accessories-1",
-    name: "墨镜面罩套组",
+    name: "黑色墨镜口罩套组",
     category: "hats",
     gender: ["male"],
     styleTags: ["street", "utility"],
@@ -511,7 +511,7 @@ export const products = [
   {
     id: "male-showcase-glasses",
     assetId: "male-accessories-2",
-    name: "透明框眼镜",
+    name: "透明框方形眼镜",
     category: "hats",
     gender: ["male"],
     styleTags: ["cleanfit", "smartcasual"],
@@ -526,7 +526,7 @@ export const products = [
   {
     id: "male-silver-skull-necklace",
     assetId: "male-jewelry-1",
-    name: "银色骷髅项链",
+    name: "银色骷髅转轮项链",
     category: "earrings",
     gender: ["male"],
     styleTags: ["street", "utility", "retro"],
@@ -541,7 +541,7 @@ export const products = [
   {
     id: "male-color-rope-bracelet",
     assetId: "male-jewelry-2",
-    name: "彩绳编织手链",
+    name: "民族风彩绳编织手链",
     category: "earrings",
     gender: ["male"],
     styleTags: ["retro", "street", "cleanfit"],
