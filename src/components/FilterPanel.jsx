@@ -1,5 +1,9 @@
 import { SlidersHorizontal } from "lucide-react";
-import { products } from "../data/demoData.js";
+import {
+  getCategoriesByGender,
+  getProductsByGender,
+  getStylesByGender,
+} from "../data/demoData.js";
 import CategoryTabs from "./CategoryTabs.jsx";
 import ProductGrid from "./ProductGrid.jsx";
 import SceneSelector from "./SceneSelector.jsx";
@@ -12,8 +16,10 @@ export default function FilterPanel({
   onSelectCategory,
   onSelectProduct,
 }) {
-  const { selectedCategory, selectedScene, selectedStyle, selectedItems } = state;
-  const filteredProducts = products
+  const { selectedCategory, selectedGender, selectedScene, selectedStyle, selectedItems } = state;
+  const genderStyles = getStylesByGender(selectedGender);
+  const genderCategories = getCategoriesByGender(selectedGender);
+  const filteredProducts = getProductsByGender(selectedGender)
     .filter((product) => product.category === selectedCategory.id)
     .sort((a, b) => {
       const score = (product) =>
@@ -36,11 +42,22 @@ export default function FilterPanel({
 
       <div className="thin-scrollbar min-w-0 flex-1 space-y-4 overflow-visible pr-0 lg:space-y-5 lg:overflow-y-auto lg:pr-1">
         <SceneSelector selectedScene={selectedScene} onSelectScene={onSelectScene} />
-        <StyleSelector selectedStyle={selectedStyle} onSelectStyle={onSelectStyle} />
-        <CategoryTabs selectedCategory={selectedCategory} onSelectCategory={onSelectCategory} />
+        <StyleSelector
+          selectedGender={selectedGender}
+          selectedStyle={selectedStyle}
+          styles={genderStyles}
+          onSelectStyle={onSelectStyle}
+        />
+        <CategoryTabs
+          categories={genderCategories}
+          selectedGender={selectedGender}
+          selectedCategory={selectedCategory}
+          onSelectCategory={onSelectCategory}
+        />
         <ProductGrid
           products={filteredProducts}
           selectedItems={selectedItems}
+          selectedGender={selectedGender}
           selectedScene={selectedScene}
           selectedStyle={selectedStyle}
           onSelectProduct={onSelectProduct}

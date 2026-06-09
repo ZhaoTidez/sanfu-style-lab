@@ -102,7 +102,7 @@ function GenderGate({ onSelectGender }) {
       </div>
       <h3 className="text-2xl font-black leading-tight sm:text-5xl">进入纸娃娃试衣间</h3>
       <p className="max-w-xs text-xs font-bold leading-5 text-black/56 sm:max-w-xl sm:text-sm sm:leading-6">
-        角色会先穿基础内搭，后续单品会像 2D 换装游戏一样叠加到同一套立绘骨架上。
+        选择后会切换对应性别的风格表达和衣物。只有“套装”品类承载真实完成图，其它单品先作为样例展示。
       </p>
       <div className="grid w-full min-w-0 grid-cols-2 gap-2 sm:gap-4">
         {options.map((option) => (
@@ -135,6 +135,33 @@ function GenderGate({ onSelectGender }) {
   );
 }
 
+function GenderSwitch({ selectedGender, onSelectGender }) {
+  const options = [
+    { id: "female", label: "女生" },
+    { id: "male", label: "男生" },
+  ];
+
+  return (
+    <div className="flex rounded-full border border-black/10 bg-white/74 p-1 text-[10px] font-black sm:text-xs">
+      {options.map((option) => {
+        const active = option.id === selectedGender;
+        return (
+          <button
+            key={option.id}
+            type="button"
+            onClick={() => onSelectGender(option.id)}
+            className={`rounded-full px-2 py-1 transition sm:px-3 sm:py-1.5 ${
+              active ? "bg-black text-white" : "text-black/48 hover:text-black"
+            }`}
+          >
+            {option.label}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function AvatarShowroom({ state, onSelectGender, onGenerate }) {
   const { selectedScene, selectedStyle, selectedGender, selectedItems, selectedCount } = state;
   const tint = sceneTints[selectedScene.backgroundType] || "rgba(255,255,255,.28)";
@@ -152,8 +179,15 @@ export default function AvatarShowroom({ state, onSelectGender, onGenerate }) {
           <h2 className="text-lg font-black sm:text-xl">纸娃娃试衣间</h2>
         </div>
         <div className="flex min-w-0 shrink-0 flex-col items-end gap-1 text-[10px] font-black sm:flex-row sm:flex-wrap sm:gap-2 sm:text-xs">
-          <span className="max-w-[120px] truncate rounded-full bg-[#21d9ff] px-2 py-1 sm:max-w-none sm:px-3 sm:py-2">场景：{selectedScene.name}</span>
-          <span className="max-w-[120px] truncate rounded-full bg-[#ffdf3d] px-2 py-1 sm:max-w-none sm:px-3 sm:py-2">风格：{selectedStyle.name}</span>
+          {selectedGender && (
+            <GenderSwitch selectedGender={selectedGender} onSelectGender={onSelectGender} />
+          )}
+          <span className="max-w-[120px] truncate rounded-full bg-[#21d9ff] px-2 py-1 sm:max-w-none sm:px-3 sm:py-2">
+            场景：{selectedScene.name}
+          </span>
+          <span className="max-w-[120px] truncate rounded-full bg-[#ffdf3d] px-2 py-1 sm:max-w-none sm:px-3 sm:py-2">
+            风格：{selectedStyle.name}
+          </span>
         </div>
       </div>
 
@@ -189,10 +223,15 @@ export default function AvatarShowroom({ state, onSelectGender, onGenerate }) {
         <StyleMeter selectedCount={selectedCount} selectedScene={selectedScene} selectedStyle={selectedStyle} />
         <button
           onClick={onGenerate}
-          className="inline-flex items-center justify-center gap-2 rounded-[18px] border-2 border-black bg-gradient-to-r from-[#ff2d9b] via-[#ffdf3d] to-[#21d9ff] px-4 py-2.5 text-sm font-black shadow-[4px_4px_0_#151515] transition hover:-translate-y-1 sm:gap-3 sm:rounded-[24px] sm:px-6 sm:py-4 sm:text-base sm:shadow-[7px_7px_0_#151515]"
+          disabled={!selectedGender}
+          className={`inline-flex items-center justify-center gap-2 rounded-[18px] border-2 border-black px-4 py-2.5 text-sm font-black shadow-[4px_4px_0_#151515] transition sm:gap-3 sm:rounded-[24px] sm:px-6 sm:py-4 sm:text-base sm:shadow-[7px_7px_0_#151515] ${
+            selectedGender
+              ? "bg-gradient-to-r from-[#ff2d9b] via-[#ffdf3d] to-[#21d9ff] hover:-translate-y-1"
+              : "cursor-not-allowed bg-white/72 text-black/35 shadow-none"
+          }`}
         >
           <Camera className="h-5 w-5" />
-          生成我的三福穿搭封面
+          {selectedGender ? "生成我的三福穿搭封面" : "先选择角色"}
         </button>
       </div>
     </section>

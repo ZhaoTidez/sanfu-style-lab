@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ArrowLeft, Download, RefreshCw, Sparkles, UploadCloud } from "lucide-react";
-import { categories, posterLines } from "../data/demoData.js";
+import { getCategoriesByGender, posterLines } from "../data/demoData.js";
 import AvatarLayerStack from "./AvatarLayerStack.jsx";
 import animeOutfitCover from "../assets/anime-outfit-cover.png";
 
@@ -80,8 +80,8 @@ function GeneratingStep({ progressText }) {
 
 function PosterResult({ state, onBack, onAgain }) {
   const [toast, setToast] = useState("");
-  const { selectedScene, selectedStyle, selectedItems, uploadedImage } = state;
-  const selectedProducts = categories
+  const { selectedGender, selectedScene, selectedStyle, selectedItems, uploadedImage } = state;
+  const selectedProducts = getCategoriesByGender(selectedGender)
     .map((category) => selectedItems[category.id])
     .filter(Boolean)
     .slice(0, 7);

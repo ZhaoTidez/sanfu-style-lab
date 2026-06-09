@@ -5,7 +5,9 @@ import ResultPage from "./components/ResultPage.jsx";
 import {
   categories,
   companionReplies,
-  products,
+  getDefaultCategoryForGender,
+  getDefaultStyleForGender,
+  getProductsByGender,
   scenes,
   styles,
 } from "./data/demoData.js";
@@ -45,7 +47,7 @@ export default function App() {
   const selectStyle = (style) => {
     setSelectedStyle(style);
     addAiMessage(
-      `${style.name}收到。接下来我会优先帮你挑更贴这个气质的单品，让今天看起来更完整。`,
+      `${style.name}收到。接下来我会优先帮你挑更贴这个气质的展示样例，让今天看起来更完整。`,
     );
   };
 
@@ -54,11 +56,17 @@ export default function App() {
   };
 
   const selectGender = (gender) => {
+    const defaultStyle = getDefaultStyleForGender(gender);
+    const defaultCategory = getDefaultCategoryForGender(gender);
+
     setSelectedGender(gender);
+    setSelectedStyle(defaultStyle);
+    setSelectedCategory(defaultCategory);
+    setSelectedItems({});
     addAiMessage(
       gender === "female"
-        ? "女生角色就位。先保留干净内搭，接下来每加一件单品都会像 2D 换装游戏一样叠到同一套立绘上。"
-        : "男生角色就位。先用简洁内搭打底，外层单品会按品类实时穿上去。",
+        ? "女生角色就位。现在会切换到女生专属风格和衣物；评委可视化请优先查看“套装”品类。"
+        : "男生角色就位。现在会切换到男生专属风格和衣物；评委可视化请优先查看“套装”品类。",
     );
   };
 
@@ -67,29 +75,41 @@ export default function App() {
       ...items,
       [product.category]: product,
     }));
-    addAiMessage(`${product.name}可以加。${product.comment}`);
+    addAiMessage(
+      product.isVisualReference
+        ? `${product.name}已放到展示区。这是套装品类的真实可视化参考位，后续可以直接替换成你提供的套装图。`
+        : `${product.name}已加入样例清单。这个品类目前只做方向展示，不作为最终真实可视化。`,
+    );
   };
 
   const generateFullLook = () => {
+    if (!selectedGender) {
+      addAiMessage("先选择女生或男生角色，我再按对应性别帮你生成完整搭配。");
+      return;
+    }
+
+    const genderProducts = getProductsByGender(selectedGender);
     const pickByCategory = (categoryId, preferredStyle = selectedStyle.id) =>
-      products.find(
+      genderProducts.find(
         (product) =>
           product.category === categoryId &&
           product.sceneTags.includes(selectedScene.id) &&
           product.styleTags.includes(preferredStyle),
       ) ||
-      products.find(
+      genderProducts.find(
         (product) =>
           product.category === categoryId &&
           product.styleTags.includes(preferredStyle),
       ) ||
-      products.find((product) => product.category === categoryId);
+      genderProducts.find((product) => product.category === categoryId);
 
     const fullLook = [
+      pickByCategory("outfits"),
       pickByCategory("tops"),
       pickByCategory("bottoms"),
-      pickByCategory("lip", "campus"),
-      pickByCategory("eye"),
+      pickByCategory("shoes"),
+      pickByCategory("makeup"),
+      pickByCategory("facewear"),
       pickByCategory("earrings"),
       pickByCategory("charm"),
       pickByCategory("bags"),

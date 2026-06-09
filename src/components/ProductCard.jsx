@@ -1,7 +1,36 @@
-import { Plus, Sparkle } from "lucide-react";
+import { Image, Plus, Sparkle } from "lucide-react";
 import { categories, styles } from "../data/demoData.js";
 
+const dressupAssets = import.meta.glob("../assets/dressup/*.png", {
+  eager: true,
+  import: "default",
+});
+
+function getAssetForProduct(product) {
+  const assetId = product.assetId || product.id;
+  return dressupAssets[`../assets/dressup/${assetId}.png`];
+}
+
 function MiniProductVisual({ product }) {
+  const asset = product.isVisualReference ? getAssetForProduct(product) : null;
+
+  if (asset) {
+    return (
+      <div className="relative h-20 overflow-hidden rounded-[18px] border border-black/8 bg-gradient-to-br from-white via-[#f7fbff] to-[#ecf8ff] sm:h-28 sm:rounded-2xl sm:border-black/10">
+        <img
+          src={asset}
+          alt=""
+          className="absolute inset-0 h-full w-full object-contain p-1 drop-shadow-[0_8px_12px_rgba(0,0,0,.18)]"
+          draggable="false"
+        />
+        <div className="absolute left-2 top-2 inline-flex items-center gap-1 rounded-full border border-black/10 bg-white/78 px-2 py-1 text-[9px] font-black sm:left-4 sm:top-4 sm:text-[10px]">
+          <Image className="h-3 w-3" />
+          真实套装
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="relative h-20 overflow-hidden rounded-[18px] border border-black/8 bg-gradient-to-br from-white via-[#f7fbff] to-[#ecf8ff] sm:h-28 sm:rounded-2xl sm:border-black/10">
       <div
@@ -13,7 +42,7 @@ function MiniProductVisual({ product }) {
         style={{ backgroundColor: product.accentColor }}
       />
       <div className="absolute left-2 top-2 rounded-full border border-black/10 bg-white/75 px-2 py-1 text-[9px] font-black sm:left-4 sm:top-4 sm:text-[10px]">
-        {product.image}
+        {product.isVisualReference ? "套装图待替换" : product.image}
       </div>
     </div>
   );
@@ -51,6 +80,16 @@ export default function ProductCard({ product, isSelected, isRecommended, onSele
           </span>
         </div>
         <div className="mt-2 flex flex-wrap gap-1">
+          {product.isSampleOnly && (
+            <span className="rounded-full bg-black/5 px-2 py-1 text-[10px] font-black text-black/55">
+              样例展示
+            </span>
+          )}
+          {product.isVisualReference && (
+            <span className="rounded-full bg-[#21d9ff] px-2 py-1 text-[10px] font-black">
+              评委参考
+            </span>
+          )}
           {isRecommended && (
             <span className="inline-flex items-center gap-1 rounded-full bg-[#a8ff2d] px-2 py-1 text-[10px] font-black">
               <Sparkle className="h-3 w-3" />

@@ -21,7 +21,7 @@ export default function AICompanionPanel({ state, onQuickAction }) {
 
       <ChatStream messages={state.aiMessages} />
       <QuickActions onQuickAction={onQuickAction} />
-      <OutfitList selectedItems={state.selectedItems} />
+      <OutfitList selectedGender={state.selectedGender} selectedItems={state.selectedItems} />
     </aside>
   );
 }

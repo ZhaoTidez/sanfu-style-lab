@@ -1,8 +1,9 @@
 import { ClipboardList } from "lucide-react";
-import { categories } from "../data/demoData.js";
+import { getCategoriesByGender } from "../data/demoData.js";
 
-export default function OutfitList({ selectedItems }) {
+export default function OutfitList({ selectedGender, selectedItems }) {
   const selectedCount = Object.keys(selectedItems).length;
+  const categories = getCategoriesByGender(selectedGender);
 
   return (
     <div className="mt-3 rounded-[24px] border border-black/8 bg-white/58 p-3">
@@ -15,7 +16,11 @@ export default function OutfitList({ selectedItems }) {
           {selectedCount} 件
         </span>
       </div>
-      <p className="mb-3 text-xs font-bold text-black/50">已搭出 {selectedCount} 件生活灵感单品</p>
+      <p className="mb-3 text-xs font-bold text-black/50">
+        {selectedGender
+          ? `已搭出 ${selectedCount} 件灵感样例`
+          : "先选择性别，再开始搭配"}
+      </p>
       <div className="grid gap-2">
         {categories.map((category) => {
           const item = selectedItems[category.id];
