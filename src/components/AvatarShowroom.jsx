@@ -16,65 +16,6 @@ const sceneTints = {
   citywalk: "rgba(255,223,61,.34)",
 };
 
-function SceneProps({ type }) {
-  const common =
-    "absolute rounded-full border-2 border-black bg-white/72 text-center text-xs font-black shadow-[4px_4px_0_rgba(0,0,0,.16)]";
-
-  if (type === "livehouse") {
-    return (
-      <>
-        <div className="absolute left-10 top-16 h-64 w-3 rotate-[24deg] bg-[#ff2d9b]/40 blur-sm" />
-        <div className="absolute right-12 top-10 h-72 w-3 rotate-[-24deg] bg-[#21d9ff]/45 blur-sm" />
-        <div className={`${common} bottom-20 left-8 px-4 py-2`}>LIVE</div>
-      </>
-    );
-  }
-
-  if (type === "campus") {
-    return (
-      <>
-        <div className="absolute left-10 top-24 h-56 w-24 rounded-t-full border-2 border-[#4f7cff]/25" />
-        <div className={`${common} right-10 top-20 px-3 py-2`}>A 栋走廊</div>
-      </>
-    );
-  }
-
-  if (type === "commute") {
-    return (
-      <>
-        <div className={`${common} left-8 top-20 px-3 py-2`}>08:37</div>
-        <div className={`${common} bottom-24 right-8 px-3 py-2`}>咖啡 + 耳机</div>
-      </>
-    );
-  }
-
-  if (type === "dorm") {
-    return (
-      <>
-        <div className={`${common} left-8 top-20 px-3 py-2`}>便利店灯光</div>
-        <div className="absolute bottom-16 right-14 h-20 w-16 rounded-[22px] border-2 border-black bg-[#ffdf3d]/80" />
-      </>
-    );
-  }
-
-  if (type === "dategift") {
-    return (
-      <>
-        <div className="absolute right-14 top-24 h-16 w-16 rotate-[-9deg] rounded-2xl border-2 border-black bg-[#ff7cc8]" />
-        <div className="absolute right-[86px] top-[92px] h-20 w-3 rotate-[-9deg] bg-white" />
-        <div className="absolute right-[62px] top-[117px] h-3 w-14 rotate-[-9deg] bg-white" />
-      </>
-    );
-  }
-
-  return (
-    <>
-      <div className={`${common} left-8 top-20 px-3 py-2`}>SUNNY</div>
-      <div className={`${common} bottom-24 right-8 px-3 py-2`}>街角 13</div>
-    </>
-  );
-}
-
 function GenderPreview({ gender }) {
   return (
     <div className="relative h-48 w-36">
@@ -204,10 +145,6 @@ export default function AvatarShowroom({ state, onSelectGender, onGenerate }) {
         <div className="absolute inset-0 grid-paper opacity-20 mix-blend-screen" />
         <div className="absolute inset-x-8 top-8 h-24 rounded-full bg-white/38 blur-2xl" />
         <div className="absolute bottom-0 left-1/2 h-32 w-[72%] -translate-x-1/2 rounded-[50%] bg-black/10 blur-xl" />
-        <SceneProps type={selectedScene.backgroundType} />
-        <div className="absolute left-2.5 top-2.5 rounded-full border border-black/10 bg-white/72 px-2.5 py-1 text-[10px] font-black backdrop-blur sm:left-5 sm:top-5 sm:px-4 sm:py-2 sm:text-xs">
-          {selectedScene.mood}
-        </div>
         <div className="absolute right-2.5 top-2.5 flex items-center gap-1 rounded-full border border-black/10 bg-white/72 px-2.5 py-1 text-[10px] font-black backdrop-blur sm:right-5 sm:top-5 sm:gap-2 sm:px-4 sm:py-2 sm:text-xs">
           <Sparkles className="h-3.5 w-3.5 text-[#ff2d9b] sm:h-4 sm:w-4" />
           {selectedCount} 层
