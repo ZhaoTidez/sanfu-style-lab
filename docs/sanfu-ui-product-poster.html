@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>三福穿搭实验室 UI 产品画报</title>
+    <style>
+      :root {
+        color: #151515;
+        background: #f7fbff;
+        font-family:
+          "Microsoft YaHei",
+          "PingFang SC",
+          "Noto Sans CJK SC",
+          Arial,
+          sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        background:
+          linear-gradient(rgba(21, 21, 21, 0.055) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(21, 21, 21, 0.055) 1px, transparent 1px),
+          #f7fbff;
+        background-size: 28px 28px;
+      }
+
+      .toolbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        justify-content: center;
+        padding: 12px;
+        background: rgba(247, 251, 255, 0.82);
+        backdrop-filter: blur(14px);
+      }
+
+      .toolbar-inner {
+        display: flex;
+        width: min(1080px, 100%);
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        border: 1px solid rgba(21, 21, 21, 0.08);
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 10px 12px;
+        box-shadow: 0 16px 42px rgba(25, 35, 70, 0.12);
+      }
+
+      .toolbar-title {
+        display: flex;
+        min-width: 0;
+        flex-direction: column;
+        font-weight: 900;
+      }
+
+      .toolbar-title span:first-child {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .toolbar-title span:last-child {
+        color: rgba(21, 21, 21, 0.54);
+        font-size: 12px;
+      }
+
+      button {
+        flex: 0 0 auto;
+        cursor: pointer;
+        border: 2px solid #151515;
+        border-radius: 999px;
+        background: #ffdf3d;
+        color: #151515;
+        padding: 10px 16px;
+        font: inherit;
+        font-size: 14px;
+        font-weight: 900;
+        box-shadow: 4px 4px 0 #151515;
+      }
+
+      .poster-shell {
+        width: min(100%, 1180px);
+        margin: 0 auto;
+        padding: 10px 12px 28px;
+      }
+
+      canvas {
+        display: block;
+        width: min(100%, 1080px);
+        height: auto;
+        margin: 0 auto;
+        border: 2px solid #151515;
+        border-radius: 28px;
+        background: #ffffff;
+        box-shadow: 10px 10px 0 #151515;
+      }
+
+      @media (max-width: 680px) {
+        .toolbar-inner {
+          align-items: stretch;
+          flex-direction: column;
+        }
+
+        button {
+          width: 100%;
+        }
+
+        canvas {
+          border-radius: 18px;
+          box-shadow: 5px 5px 0 #151515;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="toolbar">
+      <div class="toolbar-inner">
+        <div class="toolbar-title">
+          <span>三福穿搭实验室 UI 产品画报</span>
+          <span>Canvas 绘制，可用于营销讲解与评委展示</span>
+        </div>
+        <button id="downloadBtn" type="button">导出 PNG</button>
+      </div>
+    </div>
+
+    <main class="poster-shell">
+      <canvas id="poster" width="1600" height="2600" aria-label="三福穿搭实验室 UI 产品画报"></canvas>
+    </main>
+
+    <script>
+      const canvas = document.getElementById("poster");
+      const ctx = canvas.getContext("2d");
+      const W = canvas.width;
+      const H = canvas.height;
+
+      const palette = {
+        black: "#151515",
+        paper: "#f7fbff",
+        white: "#ffffff",
+        pink: "#ff2d9b",
+        cyan: "#21d9ff",
+        lime: "#a8ff2d",
+        yellow: "#ffdf3d",
+        blue: "#4f7cff",
+        softPink: "#fff1f8",
+        softCyan: "#e9fbff",
+      };
+
+      const assets = {
+        logo: "../e8745093e85fb076b47c1f8fb171db95.jpg",
+        cover: "../src/assets/anime-outfit-cover.png",
+        screens: [
+          ["首页入口", "用一句年轻化主张建立产品心智，直接进入搭配实验。", "demo-guide-assets/01-home-entry.png"],
+          ["性别选择", "先选择角色，再切换对应风格、品类和素材。", "demo-guide-assets/02-lab-before-gender.png"],
+          ["灵感筛选舱", "场景、风格、品类串联成清晰的搭配决策路径。", "demo-guide-assets/03-female-products-filter.png"],
+          ["详情弹窗", "当前清单可点开商品信息，先用样例承接未来真实详情。", "demo-guide-assets/04-outfit-detail-modal.png"],
+          ["男生饰品", "男女分类一致，内容素材按性别差异呈现。", "demo-guide-assets/05-male-jewelry-products.png"],
+          ["穿搭封面", "把搭配结果转为可分享封面，增强传播和留存。", "demo-guide-assets/06-cover-generator.png"],
+        ],
+      };
+
+      const loadedImages = {};
+
+      function loadImage(key, src) {
+        return new Promise((resolve) => {
+          const image = new Image();
+          image.onload = () => {
+            loadedImages[key] = image;
+            resolve();
+          };
+          image.onerror = () => resolve();
+          image.src = src;
+        });
+      }
+
+      function font(weight, size) {
+        return `${weight} ${size}px "Microsoft YaHei", "PingFang SC", Arial, sans-serif`;
+      }
+
+      function roundedRect(x, y, w, h, r) {
+        const radius = Math.min(r, w / 2, h / 2);
+        ctx.beginPath();
+        ctx.moveTo(x + radius, y);
+        ctx.arcTo(x + w, y, x + w, y + h, radius);
+        ctx.arcTo(x + w, y + h, x, y + h, radius);
+        ctx.arcTo(x, y + h, x, y, radius);
+        ctx.arcTo(x, y, x + w, y, radius);
+        ctx.closePath();
+      }
+
+      function fillRound(x, y, w, h, r, color) {
+        ctx.fillStyle = color;
+        roundedRect(x, y, w, h, r);
+        ctx.fill();
+      }
+
+      function strokeRound(x, y, w, h, r, color = palette.black, lineWidth = 4) {
+        ctx.strokeStyle = color;
+        ctx.lineWidth = lineWidth;
+        roundedRect(x, y, w, h, r);
+        ctx.stroke();
+      }
+
+      function shadowBlock(x, y, w, h, r, color, shadow = 9) {
+        fillRound(x + shadow, y + shadow, w, h, r, palette.black);
+        fillRound(x, y, w, h, r, color);
+        strokeRound(x, y, w, h, r);
+      }
+
+      function text(content, x, y, options = {}) {
+        ctx.save();
+        ctx.fillStyle = options.color || palette.black;
+        ctx.font = font(options.weight || 700, options.size || 32);
+        ctx.textAlign = options.align || "left";
+        ctx.textBaseline = options.baseline || "alphabetic";
+        if (options.maxWidth) {
+          ctx.fillText(content, x, y, options.maxWidth);
+        } else {
+          ctx.fillText(content, x, y);
+        }
+        ctx.restore();
+      }
+
+      function wrapText(content, x, y, maxWidth, lineHeight, options = {}) {
+        ctx.save();
+        ctx.fillStyle = options.color || palette.black;
+        ctx.font = font(options.weight || 700, options.size || 28);
+        ctx.textAlign = options.align || "left";
+        ctx.textBaseline = "top";
+
+        const paragraphs = String(content).split("\n");
+        let cursorY = y;
+        paragraphs.forEach((paragraph) => {
+          let line = "";
+          Array.from(paragraph).forEach((char) => {
+            const testLine = line + char;
+            if (ctx.measureText(testLine).width > maxWidth && line) {
+              ctx.fillText(line, x, cursorY);
+              cursorY += lineHeight;
+              line = char;
+            } else {
+              line = testLine;
+            }
+          });
+          if (line) {
+            ctx.fillText(line, x, cursorY);
+            cursorY += lineHeight;
+          }
+        });
+        ctx.restore();
+        return cursorY;
+      }
+
+      function sectionTitle(index, title, subtitle, x, y, color) {
+        shadowBlock(x, y, 92, 64, 22, color, 6);
+        text(String(index).padStart(2, "0"), x + 46, y + 41, {
+          size: 26,
+          weight: 900,
+          align: "center",
+        });
+        text(title, x + 116, y + 36, { size: 42, weight: 900 });
+        wrapText(subtitle, x + 118, y + 58, 1120, 32, {
+          size: 22,
+          weight: 700,
+          color: "rgba(21,21,21,.58)",
+        });
+      }
+
+      function drawGrid() {
+        ctx.fillStyle = palette.paper;
+        ctx.fillRect(0, 0, W, H);
+        ctx.strokeStyle = "rgba(21,21,21,.055)";
+        ctx.lineWidth = 1;
+        for (let x = 0; x <= W; x += 32) {
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, H);
+          ctx.stroke();
+        }
+        for (let y = 0; y <= H; y += 32) {
+          ctx.beginPath();
+          ctx.moveTo(0, y);
+          ctx.lineTo(W, y);
+          ctx.stroke();
+        }
+      }
+
+      function drawIcon(type, x, y, color) {
+        shadowBlock(x, y, 86, 86, 26, color, 6);
+        ctx.save();
+        ctx.translate(x + 43, y + 43);
+        ctx.strokeStyle = palette.black;
+        ctx.fillStyle = palette.black;
+        ctx.lineWidth = 5;
+        ctx.lineCap = "round";
+        ctx.lineJoin = "round";
+
+        if (type === "spark") {
+          ctx.beginPath();
+          ctx.moveTo(0, -27);
+          ctx.lineTo(8, -8);
+          ctx.lineTo(28, 0);
+          ctx.lineTo(8, 8);
+          ctx.lineTo(0, 27);
+          ctx.lineTo(-8, 8);
+          ctx.lineTo(-28, 0);
+          ctx.lineTo(-8, -8);
+          ctx.closePath();
+          ctx.stroke();
+        }
+
+        if (type === "grid") {
+          [-17, 17].forEach((px) => {
+            [-17, 17].forEach((py) => {
+              roundedRect(px - 12, py - 12, 24, 24, 7);
+              ctx.stroke();
+            });
+          });
+        }
+
+        if (type === "hanger") {
+          ctx.beginPath();
+          ctx.arc(0, -18, 11, Math.PI * 1.1, Math.PI * 2.05);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(0, -7);
+          ctx.lineTo(-28, 23);
+          ctx.lineTo(28, 23);
+          ctx.closePath();
+          ctx.stroke();
+        }
+
+        if (type === "flow") {
+          ctx.beginPath();
+          ctx.moveTo(-28, -14);
+          ctx.lineTo(18, -14);
+          ctx.lineTo(8, -24);
+          ctx.moveTo(18, -14);
+          ctx.lineTo(8, -4);
+          ctx.moveTo(28, 17);
+          ctx.lineTo(-18, 17);
+          ctx.lineTo(-8, 7);
+          ctx.moveTo(-18, 17);
+          ctx.lineTo(-8, 27);
+          ctx.stroke();
+        }
+        ctx.restore();
+      }
+
+      function imageCover(img, x, y, w, h) {
+        if (!img) {
+          fillRound(x, y, w, h, 24, palette.softCyan);
+          strokeRound(x, y, w, h, 24, "rgba(21,21,21,.16)", 2);
+          text("界面截图", x + w / 2, y + h / 2 + 8, {
+            align: "center",
+            size: 28,
+            weight: 900,
+            color: "rgba(21,21,21,.42)",
+          });
+          return;
+        }
+
+        const ratio = Math.max(w / img.width, h / img.height);
+        const sw = w / ratio;
+        const sh = h / ratio;
+        const sx = (img.width - sw) / 2;
+        const sy = Math.max(0, (img.height - sh) * 0.12);
+
+        ctx.save();
+        roundedRect(x, y, w, h, 24);
+        ctx.clip();
+        ctx.drawImage(img, sx, sy, sw, sh, x, y, w, h);
+        ctx.restore();
+      }
+
+      function drawHero() {
+        shadowBlock(62, 56, 1476, 430, 46, palette.white, 12);
+        fillRound(92, 86, 220, 76, 38, palette.white);
+        strokeRound(92, 86, 220, 76, 38, "rgba(21,21,21,.12)", 2);
+
+        if (loadedImages.logo) {
+          ctx.drawImage(loadedImages.logo, 116, 105, 118, 36);
+        } else {
+          text("SANFU", 116, 133, { size: 31, weight: 900 });
+        }
+        text("Style Lab", 246, 132, { size: 24, weight: 900 });
+
+        text("三福穿搭实验室", 106, 246, { size: 86, weight: 900 });
+        text("UI 产品画报", 106, 336, { size: 88, weight: 900, color: palette.pink });
+        wrapText(
+          "以“场景灵感 + 纸娃娃试穿 + AI 搭配建议 + 封面分享”为核心，帮助年轻用户从逛商品变成搭出今天的生活状态。",
+          108,
+          380,
+          760,
+          36,
+          { size: 25, weight: 700, color: "rgba(21,21,21,.65)" },
+        );
+
+        const chipData = [
+          ["图标规范", palette.pink],
+          ["品牌定位", palette.cyan],
+          ["信息架构", palette.lime],
+          ["界面设计", palette.yellow],
+          ["界面展示", palette.blue],
+        ];
+        chipData.forEach(([label, color], i) => {
+          const x = 950 + (i % 2) * 225;
+          const y = 116 + Math.floor(i / 2) * 92;
+          shadowBlock(x, y, 190, 56, 28, color, 5);
+          text(label, x + 95, y + 37, { size: 24, weight: 900, align: "center" });
+        });
+
+        if (loadedImages.cover) {
+          imageCover(loadedImages.cover, 1185, 312, 230, 124);
+          strokeRound(1185, 312, 230, 124, 24);
+        }
+      }
+
+      function drawIconSection() {
+        sectionTitle(1, "图标规范", "统一图标尺寸、线宽和颜色语义，让小程序操作更快被识别。", 70, 550, palette.pink);
+        const cards = [
+          ["spark", "线性图标", "使用轻量线性图标，统一 2px 视觉线宽，保持潮流但不喧宾夺主。", palette.pink],
+          ["grid", "尺寸网格", "常规图标 20px，强调入口 24px，按钮触控热区保持 40px 以上。", palette.cyan],
+          ["hanger", "服饰语义", "场景、风格、品类、套装分别用明确图形辅助用户快速判断。", palette.lime],
+          ["flow", "反馈颜色", "粉色表示灵感，青色表示科技，黄绿色表示完成和行动反馈。", palette.yellow],
+        ];
+
+        cards.forEach((card, i) => {
+          const x = 82 + i * 370;
+          const y = 660;
+          fillRound(x, y, 328, 230, 28, palette.white);
+          strokeRound(x, y, 328, 230, 28, "rgba(21,21,21,.12)", 2);
+          drawIcon(card[0], x + 22, y + 24, card[3]);
+          text(card[1], x + 124, y + 70, { size: 30, weight: 900 });
+          wrapText(card[2], x + 26, y + 126, 274, 30, {
+            size: 22,
+            weight: 700,
+            color: "rgba(21,21,21,.62)",
+          });
+        });
+      }
+
+      function drawBrandSection() {
+        sectionTitle(2, "品牌定位", "不是单品货架，而是更懂年轻人的三福数字穿搭顾问。", 70, 968, palette.cyan);
+        shadowBlock(82, 1084, 610, 350, 34, palette.black, 9);
+        text("核心人群", 128, 1160, { size: 42, weight: 900, color: palette.white });
+        wrapText(
+          "学生、年轻通勤人群、逛三福时想快速获得穿搭建议的用户。她们/他们希望搭配省心、视觉出片、内容可以分享。",
+          130,
+          1210,
+          505,
+          38,
+          { size: 25, weight: 700, color: "rgba(255,255,255,.78)" },
+        );
+
+        const values = [
+          ["潮趣", "高饱和色彩和粗描边形成更年轻的视觉记忆。", palette.pink],
+          ["好搭", "从场景开始推荐，降低选择成本。", palette.lime],
+          ["可分享", "搭配结果沉淀为封面，形成传播闭环。", palette.yellow],
+        ];
+        values.forEach((item, i) => {
+          const x = 750;
+          const y = 1084 + i * 116;
+          shadowBlock(x, y, 695, 88, 28, item[2], 6);
+          text(item[0], x + 38, y + 55, { size: 32, weight: 900 });
+          wrapText(item[1], x + 150, y + 24, 485, 30, {
+            size: 23,
+            weight: 700,
+            color: "rgba(21,21,21,.72)",
+          });
+        });
+      }
+
+      function drawArchitectureSection() {
+        sectionTitle(3, "信息架构", "按用户真实决策顺序组织页面：先确定状态，再完成搭配。", 70, 1512, palette.lime);
+        const nodes = [
+          ["首页", "主题心智"],
+          ["性别", "内容切换"],
+          ["灵感筛选舱", "场景/风格/品类"],
+          ["试衣展示", "人物与清单"],
+          ["AI 好搭子", "建议与补齐"],
+          ["封面生成", "分享沉淀"],
+        ];
+        nodes.forEach(([name, desc], i) => {
+          const x = 94 + (i % 3) * 486;
+          const y = 1632 + Math.floor(i / 3) * 132;
+          shadowBlock(x, y, 386, 88, 28, i % 2 ? palette.softCyan : palette.white, 6);
+          fillRound(x + 24, y + 22, 48, 44, 16, [palette.pink, palette.cyan, palette.lime, palette.yellow, palette.blue, palette.pink][i]);
+          text(String(i + 1), x + 48, y + 53, { size: 22, weight: 900, align: "center" });
+          text(name, x + 92, y + 40, { size: 27, weight: 900 });
+          text(desc, x + 92, y + 68, { size: 20, weight: 700, color: "rgba(21,21,21,.56)" });
+
+          if (i !== 2 && i !== 5) {
+            ctx.strokeStyle = palette.black;
+            ctx.lineWidth = 4;
+            ctx.beginPath();
+            ctx.moveTo(x + 396, y + 44);
+            ctx.lineTo(x + 460, y + 44);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(x + 460, y + 44);
+            ctx.lineTo(x + 444, y + 34);
+            ctx.lineTo(x + 444, y + 54);
+            ctx.closePath();
+            ctx.fillStyle = palette.black;
+            ctx.fill();
+          }
+        });
+      }
+
+      function drawInterfaceDesignSection() {
+        sectionTitle(4, "界面设计", "让人物和商品图成为主角，装饰只服务于潮流感和操作识别。", 70, 1948, palette.yellow);
+        const rules = [
+          ["第一屏", "强主张 + 视觉人物，直接传递“搭出一种今天”。"],
+          ["试衣间", "人物展示居中放大，筛选与 AI 辅助退到两侧。"],
+          ["移动端", "生活场景、风格表达折叠，把空间留给品类和商品。"],
+          ["展示逻辑", "套装放真实样例，单品用于素材方向展示。"],
+        ];
+        rules.forEach(([name, desc], i) => {
+          const x = 82 + i * 370;
+          const y = 2060;
+          shadowBlock(x, y, 328, 196, 28, palette.white, 6);
+          fillRound(x + 24, y + 24, 80, 42, 21, [palette.pink, palette.cyan, palette.lime, palette.yellow][i]);
+          text(name, x + 64, y + 53, { size: 21, weight: 900, align: "center" });
+          wrapText(desc, x + 26, y + 92, 272, 34, {
+            size: 24,
+            weight: 700,
+            color: "rgba(21,21,21,.66)",
+          });
+        });
+      }
+
+      function drawShowcaseSection() {
+        sectionTitle(5, "界面展示", "用 Demo 实际界面说明从进入、筛选、试穿到分享的完整闭环。", 70, 2340, palette.blue);
+
+        assets.screens.forEach(([title, desc], i) => {
+          const x = 70 + (i % 3) * 500;
+          const y = 2450 + Math.floor(i / 3) * 292;
+          const img = loadedImages[`screen${i}`];
+          fillRound(x, y, 456, 250, 28, palette.white);
+          strokeRound(x, y, 456, 250, 28, "rgba(21,21,21,.12)", 2);
+          imageCover(img, x + 16, y + 16, 424, 150);
+          text(title, x + 22, y + 204, { size: 26, weight: 900 });
+          wrapText(desc, x + 22, y + 218, 400, 25, {
+            size: 18,
+            weight: 700,
+            color: "rgba(21,21,21,.58)",
+          });
+        });
+      }
+
+      function drawFooter() {
+        fillRound(70, 3042, 1460, 96, 32, palette.black);
+        text("三福穿搭实验室 Demo", 112, 3101, {
+          size: 34,
+          weight: 900,
+          color: palette.white,
+        });
+        text("图标规范 / 品牌定位 / 信息架构 / 界面设计 / 界面展示", 1488, 3101, {
+          size: 26,
+          weight: 900,
+          color: palette.yellow,
+          align: "right",
+        });
+      }
+
+      function drawPoster() {
+        canvas.height = 3220;
+        drawGrid();
+        drawHero();
+        drawIconSection();
+        drawBrandSection();
+        drawArchitectureSection();
+        drawInterfaceDesignSection();
+        drawShowcaseSection();
+        drawFooter();
+      }
+
+      async function init() {
+        const jobs = [
+          loadImage("logo", assets.logo),
+          loadImage("cover", assets.cover),
+          ...assets.screens.map((screen, i) => loadImage(`screen${i}`, screen[2])),
+        ];
+        await Promise.all(jobs);
+        drawPoster();
+      }
+
+      document.getElementById("downloadBtn").addEventListener("click", () => {
+        try {
+          canvas.toBlob((blob) => {
+            if (!blob) return;
+            const link = document.createElement("a");
+            link.download = "sanfu-ui-product-poster.png";
+            link.href = URL.createObjectURL(blob);
+            link.click();
+            URL.revokeObjectURL(link.href);
+          }, "image/png");
+        } catch (error) {
+          alert("当前浏览器限制了本地图片导出。请通过本地开发服务器打开本文件后再导出 PNG。");
+        }
+      });
+
+      init();
+    </script>
+  </body>
+</html>
