@@ -48,7 +48,7 @@ export default function FilterPanel({
           styles={genderStyles}
           onSelectStyle={onSelectStyle}
         />
-        <section className="flex min-h-0 flex-1 flex-col rounded-[22px] border border-black/8 bg-white/52 p-3">
+        <section className="flex min-h-0 flex-1 flex-col">
           <CategoryTabs
             categories={genderCategories}
             selectedGender={selectedGender}

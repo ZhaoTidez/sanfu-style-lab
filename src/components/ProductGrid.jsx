@@ -9,7 +9,7 @@ export default function ProductGrid({
   onSelectProduct,
 }) {
   return (
-    <section className="mt-3 flex min-h-0 min-w-0 flex-1 flex-col">
+    <section className="mt-3 flex min-h-0 min-w-0 flex-1 flex-col rounded-[22px] border border-black/8 bg-white/52 p-3">
       <div className="mb-2 flex shrink-0 items-center justify-between">
         <h3 className="font-black leading-5">灵感单品</h3>
         <span className="rounded-full bg-white px-3 py-1 text-[11px] font-black text-black/48">
