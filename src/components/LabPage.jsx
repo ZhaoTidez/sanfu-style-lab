@@ -23,7 +23,7 @@ export default function LabPage({
   const isFilterOpen = mobilePanel === "filter";
   const isCompanionOpen = mobilePanel === "companion";
 
-  const drawerTitle = isFilterOpen ? "灵感筛选" : "AI 好搭子";
+  const drawerTitle = isFilterOpen ? "灵感筛选舱" : "AI 好搭子";
 
   return (
     <main className="h-svh overflow-hidden bg-[#f5f7fb] text-[#151515] lg:min-h-screen lg:overflow-x-hidden lg:overflow-y-auto lg:bg-[#f7fbff]">
@@ -56,7 +56,7 @@ export default function LabPage({
               <SlidersHorizontal className="h-5 w-5" />
             </span>
             <span className="min-w-0">
-              <span className="block truncate text-sm font-black">搭配灵感</span>
+              <span className="block truncate text-sm font-black">灵感筛选舱</span>
               <span className="block truncate text-[10px] font-bold text-black/45">场景 / 风格 / 单品</span>
             </span>
           </button>
