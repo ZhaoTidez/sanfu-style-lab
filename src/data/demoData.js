@@ -162,8 +162,6 @@ export const categories = [
   { id: "earrings", name: "耳饰", gender: ["female"] },
   { id: "makeup", name: "妆容", gender: ["female"] },
   { id: "facewear", name: "眼镜面罩", gender: ["male"] },
-  { id: "charm", name: "潮玩挂件", gender: ["female", "male"] },
-  { id: "blindbox", name: "盲盒", gender: ["female", "male"] },
 ];
 
 export const products = [
@@ -623,7 +621,7 @@ export const companionReplies = {
   这套适合约会吗:
     "适合，尤其是想要自然心动感的时候。建议保留一个柔光色彩，会显得不刻意又很会搭。",
   还差什么配饰:
-    "这套已经有状态了，但还差一个被记住的小亮点。加耳饰、眼镜或潮玩挂件，出片会更稳。",
+    "这套已经有状态了，但还差一个被记住的小亮点。加耳饰、眼镜或鞋包细节，出片会更稳。",
   一键搭完整套:
     "我先把套装展示位和样例单品补齐了。评委真正要看的完成效果，优先看“套装”品类里的可视化样例。",
 };
