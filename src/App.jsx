@@ -108,10 +108,8 @@ export default function App() {
       pickByCategory("tops"),
       pickByCategory("bottoms"),
       pickByCategory("shoes"),
-      pickByCategory("makeup"),
       pickByCategory("facewear"),
       pickByCategory("earrings"),
-      pickByCategory("charm"),
       pickByCategory("bags"),
     ].filter(Boolean);
 

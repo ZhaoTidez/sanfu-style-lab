@@ -6,10 +6,10 @@ const coverUrl = new URL("../assets/anime-outfit-cover.png", import.meta.url).hr
 const floatItems = [
   { label: "短上衣", className: "left-[7%] top-[22%] rotate-[-10deg]", color: "#ff2d9b" },
   { label: "牛仔裙", className: "left-[14%] bottom-[18%] rotate-[8deg]", color: "#4f7cff" },
-  { label: "口红", className: "right-[12%] top-[18%] rotate-[12deg]", color: "#ff6fae" },
-  { label: "耳饰", className: "right-[7%] bottom-[24%] rotate-[-8deg]", color: "#dfe7f1" },
-  { label: "盲盒", className: "left-[42%] top-[12%] rotate-[6deg]", color: "#ffdf3d" },
-  { label: "包挂", className: "right-[32%] bottom-[10%] rotate-[10deg]", color: "#a8ff2d" },
+  { label: "鞋子", className: "right-[12%] top-[18%] rotate-[12deg]", color: "#ff6fae" },
+  { label: "饰品", className: "right-[7%] bottom-[24%] rotate-[-8deg]", color: "#dfe7f1" },
+  { label: "包包", className: "left-[42%] top-[12%] rotate-[6deg]", color: "#ffdf3d" },
+  { label: "服饰配件", className: "right-[32%] bottom-[10%] rotate-[10deg]", color: "#a8ff2d" },
 ];
 
 function FloatingSticker({ item, index }) {
@@ -129,7 +129,7 @@ export default function HomePage({ onStart }) {
         </div>
 
         <div className="hidden flex-wrap gap-2 pb-2 text-xs font-black text-black/65 lg:flex">
-          {["通勤状态", "开学松弛", "Livehouse 出片", "宿舍随手拍", "Citywalk 亮色", "美妆小心机"].map(
+          {["通勤状态", "开学松弛", "Livehouse 出片", "宿舍随手拍", "Citywalk 亮色", "配件小亮点"].map(
             (tag) => (
               <span key={tag} className="rounded-full border border-black/10 bg-white/65 px-3 py-2 backdrop-blur">
                 #{tag}
