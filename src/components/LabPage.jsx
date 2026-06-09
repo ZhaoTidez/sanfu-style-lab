@@ -125,7 +125,11 @@ export default function LabPage({
               </button>
             </div>
 
-            <div className="thin-scrollbar min-h-0 flex-1 overflow-y-auto pb-20">
+            <div
+              className={`thin-scrollbar min-h-0 flex-1 ${
+                isFilterOpen ? "overflow-hidden pb-0" : "overflow-y-auto pb-20"
+              }`}
+            >
               {isFilterOpen ? (
                 <FilterPanel
                   state={state}
