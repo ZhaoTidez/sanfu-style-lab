@@ -21,7 +21,7 @@ export default function ProductGrid({
           中间先选女生或男生，这里会自动切换对应性别的衣物。
         </div>
       ) : products.length ? (
-        <div className="grid min-h-0 flex-1 content-start gap-2 overflow-hidden sm:gap-3 2xl:grid-cols-2">
+        <div className="thin-scrollbar grid min-h-0 flex-1 content-start gap-2 overflow-y-auto pr-1 sm:gap-3 2xl:grid-cols-2">
           {products.map((product) => (
             <ProductCard
               key={product.id}
