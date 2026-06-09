@@ -8,7 +8,7 @@ const dressupAssets = import.meta.glob("../assets/dressup/*.png", {
 });
 
 function getAssetForProduct(product) {
-  if (!product?.isVisualReference) return null;
+  if (!product) return null;
   const assetId = product.assetId || product.id;
   return dressupAssets[`../assets/dressup/${assetId}.png`];
 }

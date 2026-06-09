@@ -8,6 +8,8 @@ export default function CategoryTabs({
   onSelectCategory,
 }) {
   const [isOpen, setIsOpen] = useState(false);
+  const outfitCategory = categories.find((category) => category.id === "outfits");
+  const standardCategories = categories.filter((category) => category.id !== "outfits");
 
   const selectCategory = (category) => {
     onSelectCategory(category);
@@ -41,23 +43,38 @@ export default function CategoryTabs({
 
       {isOpen &&
         (selectedGender ? (
-          <div className="mt-2 grid grid-cols-2 gap-1.5">
-            {categories.map((category) => {
-              const active = category.id === selectedCategory.id;
-              return (
-                <button
-                  key={category.id}
-                  onClick={() => selectCategory(category)}
-                  className={`min-w-0 truncate rounded-full border px-3 py-2 text-xs font-black transition ${
-                    active
-                      ? "border-black bg-[#ff2d9b] text-white shadow-[3px_3px_0_#151515]"
-                      : "border-black/10 bg-white/70 text-black/60 hover:border-black/25"
-                  }`}
-                >
-                  {category.name}
-                </button>
-              );
-            })}
+          <div className="mt-2 flex flex-col gap-1.5">
+            {outfitCategory && (
+              <button
+                key={outfitCategory.id}
+                onClick={() => selectCategory(outfitCategory)}
+                className={`min-w-0 truncate rounded-[16px] border px-3 py-2.5 text-xs font-black transition ${
+                  outfitCategory.id === selectedCategory.id
+                    ? "border-black bg-[#ff2d9b] text-white shadow-[3px_3px_0_#151515]"
+                    : "border-black/10 bg-white/78 text-black/68 hover:border-black/25"
+                }`}
+              >
+                {outfitCategory.name}
+              </button>
+            )}
+            <div className="grid grid-cols-2 gap-1.5">
+              {standardCategories.map((category) => {
+                const active = category.id === selectedCategory.id;
+                return (
+                  <button
+                    key={category.id}
+                    onClick={() => selectCategory(category)}
+                    className={`min-w-0 truncate rounded-full border px-3 py-2 text-xs font-black transition ${
+                      active
+                        ? "border-black bg-[#ff2d9b] text-white shadow-[3px_3px_0_#151515]"
+                        : "border-black/10 bg-white/70 text-black/60 hover:border-black/25"
+                    }`}
+                  >
+                    {category.name}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         ) : (
           <div className="mt-2 rounded-[16px] border border-dashed border-black/12 bg-white/58 px-3 py-3 text-xs font-bold leading-5 text-black/45">

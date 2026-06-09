@@ -14,7 +14,6 @@ const layerOrder = {
   shoes: 34,
   bags: 42,
   earrings: 58,
-  facewear: 66,
   hats: 72,
   outfits: 80,
 };

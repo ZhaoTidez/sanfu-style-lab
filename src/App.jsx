@@ -108,9 +108,9 @@ export default function App() {
       pickByCategory("tops"),
       pickByCategory("bottoms"),
       pickByCategory("shoes"),
-      pickByCategory("facewear"),
-      pickByCategory("earrings"),
       pickByCategory("bags"),
+      pickByCategory("hats"),
+      pickByCategory("earrings"),
     ].filter(Boolean);
 
     setSelectedItems((items) =>

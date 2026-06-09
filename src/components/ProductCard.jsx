@@ -12,9 +12,11 @@ function getAssetForProduct(product) {
 }
 
 function MiniProductVisual({ product }) {
-  const asset = product.isVisualReference ? getAssetForProduct(product) : null;
+  const asset = getAssetForProduct(product);
 
   if (asset) {
+    const assetLabel = product.isVisualReference ? "真实套装" : "素材样例";
+
     return (
       <div className="relative h-16 overflow-hidden rounded-[18px] border border-black/8 bg-gradient-to-br from-white via-[#f7fbff] to-[#ecf8ff] sm:h-20 sm:rounded-2xl sm:border-black/10">
         <img
@@ -25,7 +27,7 @@ function MiniProductVisual({ product }) {
         />
         <div className="absolute left-2 top-2 inline-flex items-center gap-1 rounded-full border border-black/10 bg-white/78 px-2 py-1 text-[9px] font-black sm:text-[10px]">
           <Image className="h-3 w-3" />
-          真实套装
+          {assetLabel}
         </div>
       </div>
     );
