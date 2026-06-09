@@ -54,7 +54,7 @@ export default function AvatarLayerStack({ selectedItems, selectedGender = "fema
 
   return (
     <div
-      className="relative z-10 h-[min(46svh,390px)] w-[min(60vw,260px)] select-none sm:h-[540px] sm:w-[380px] sm:max-w-[92vw]"
+      className="relative z-10 h-[min(56svh,470px)] w-[min(72vw,330px)] select-none sm:h-[600px] sm:w-[430px] sm:max-w-[96vw]"
       role="img"
       aria-label={label}
     >
