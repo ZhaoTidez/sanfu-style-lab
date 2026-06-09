@@ -11,9 +11,6 @@ export default function CategoryTabs({
           <p className="text-xs font-black text-black/45">STEP 03</p>
           <h3 className="font-black">实验品类</h3>
         </div>
-        <span className="rounded-full bg-[#ffdf3d] px-3 py-1 text-[11px] font-black">
-          套装优先
-        </span>
       </div>
       {selectedGender ? (
         <div className="-mx-3 flex max-w-[calc(100%+1.5rem)] gap-2 overflow-x-auto px-3 pb-1 lg:mx-0 lg:max-w-full lg:flex-wrap lg:px-0">

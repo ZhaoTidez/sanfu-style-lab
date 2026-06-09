@@ -11,9 +11,6 @@ export default function StyleSelector({
           <p className="text-xs font-black text-black/45">STEP 02</p>
           <h3 className="font-black">风格表达</h3>
         </div>
-        <span className="rounded-full bg-[#21d9ff] px-3 py-1 text-[11px] font-black">
-          {selectedGender ? "按性别切换" : "先选角色"}
-        </span>
       </div>
       {selectedGender ? (
         <div className="-mx-3 flex max-w-[calc(100%+1.5rem)] gap-2 overflow-x-auto px-3 pb-1 lg:mx-0 lg:max-w-full lg:flex-wrap lg:overflow-visible lg:px-0">

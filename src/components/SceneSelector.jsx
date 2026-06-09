@@ -8,9 +8,6 @@ export default function SceneSelector({ selectedScene, onSelectScene }) {
           <p className="text-xs font-black text-black/45">STEP 01</p>
           <h3 className="font-black">生活场景</h3>
         </div>
-        <span className="rounded-full bg-[#a8ff2d] px-3 py-1 text-[11px] font-black">
-          先定今天
-        </span>
       </div>
       <div className="-mx-3 flex max-w-[calc(100%+1.5rem)] snap-x gap-2 overflow-x-auto px-3 pb-1 lg:mx-0 lg:grid lg:max-w-full lg:grid-cols-1 lg:overflow-visible lg:px-0">
         {scenes.map((scene) => {

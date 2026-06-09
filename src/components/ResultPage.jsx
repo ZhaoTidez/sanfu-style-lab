@@ -229,6 +229,16 @@ export default function ResultPage({ state, setUploadedImage, setGenerationStep,
       <div className="fixed inset-0 grid-paper opacity-70" />
       <div className="fixed left-[-7rem] top-[-8rem] h-96 w-96 rounded-full bg-[#ff2d9b]/20 blur-3xl" />
       <div className="fixed bottom-[-9rem] right-[-8rem] h-96 w-96 rounded-full bg-[#21d9ff]/24 blur-3xl" />
+      {state.generationStep !== "done" && (
+        <button
+          type="button"
+          onClick={onBack}
+          className="fixed left-4 top-4 z-20 inline-flex items-center gap-2 rounded-full border-2 border-black bg-white/90 px-4 py-2 text-xs font-black shadow-[4px_4px_0_#151515] backdrop-blur transition hover:-translate-y-0.5 sm:left-6 sm:top-6 sm:px-5 sm:py-3 sm:text-sm"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          返回实验室
+        </button>
+      )}
       <div className="relative z-10 mx-auto flex min-h-[calc(100vh-40px)] w-full items-center">
         {state.generationStep === "upload" && (
           <UploadStep
