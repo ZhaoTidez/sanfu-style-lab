@@ -77,7 +77,7 @@ export default function HomePage({ onStart }) {
             <span className="text-sm font-black tracking-normal">Style Lab</span>
           </div>
           <div className="rounded-full border border-black/10 bg-white/70 px-3 py-1.5 text-[11px] font-bold text-black/70 backdrop-blur-xl sm:px-4 sm:py-2 sm:text-xs">
-            三福穿搭实验室
+            三福潮搭实验室
           </div>
         </header>
 
@@ -92,7 +92,7 @@ export default function HomePage({ onStart }) {
               <span className="block text-[#ff2d9b]">是搭出一种今天</span>
             </h1>
             <p className="mt-2 max-w-2xl text-sm font-semibold leading-5 text-black/68 sm:mt-6 sm:text-xl sm:leading-8">
-              三福穿搭实验室，陪你把通勤、开学、聚会、宿舍日常都搭得更有意思。
+              三福潮搭实验室，陪你把通勤、开学、聚会、宿舍日常都搭得更有意思。
             </p>
             <div className="mt-3 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:items-center">
               <button

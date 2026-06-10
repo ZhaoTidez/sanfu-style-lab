@@ -36,7 +36,7 @@ export default function LabPage({
           <div className="flex items-center gap-3">
             <img src={logoUrl} alt="SANFU" className="h-8 w-auto object-contain" />
             <div>
-              <p className="text-sm font-black leading-4">三福穿搭实验室</p>
+              <p className="text-sm font-black leading-4">三福潮搭实验室</p>
               <p className="text-xs font-bold text-black/48">SANFU Style Lab</p>
             </div>
           </div>
